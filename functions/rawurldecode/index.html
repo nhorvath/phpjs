@@ -36,6 +36,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.min.css" rel="stylesheet" />
   <link href="/atom.xml" rel="alternate" title="php.js" type="application/atom+xml">
   <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -61,7 +62,7 @@
 <a target="_blank" href="https://github.com/kvz/phpjs">
   <img id="fork-us" style="position: absolute; z-index: 99; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
 </a>
-<body   class="no-sidebar"  >
+<body   >
   <header role="banner"><hgroup>
   <div id="logo">
     <h1><a href="/">php.js</a></h1>
@@ -131,25 +132,39 @@
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">rawurldecode</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="c1">// http://kevin.vanzonneveld.net</span>
-</span><span class='line'>  <span class="c1">// +   original by: Brett Zamir (http://brett-zamir.me)</span>
-</span><span class='line'>  <span class="c1">// +      input by: travc</span>
-</span><span class='line'>  <span class="c1">// +      input by: Brett Zamir (http://brett-zamir.me)</span>
-</span><span class='line'>  <span class="c1">// +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)</span>
-</span><span class='line'>  <span class="c1">// +      input by: Ratheous</span>
-</span><span class='line'>  <span class="c1">// +      reimplemented by: Brett Zamir (http://brett-zamir.me)</span>
-</span><span class='line'>  <span class="c1">// %        note 1: Please be aware that this function expects to decode from UTF-8 encoded strings, as found on</span>
-</span><span class='line'>  <span class="c1">// %        note 1: pages served as UTF-8</span>
-</span><span class='line'>  <span class="c1">// *     example 1: rawurldecode(&#39;Kevin+van+Zonneveld%21&#39;);</span>
-</span><span class='line'>  <span class="c1">// *     returns 1: &#39;Kevin+van+Zonneveld!&#39;</span>
-</span><span class='line'>  <span class="c1">// *     example 2: rawurldecode(&#39;http%3A%2F%2Fkevin.vanzonneveld.net%2F&#39;);</span>
-</span><span class='line'>  <span class="c1">// *     returns 2: &#39;http://kevin.vanzonneveld.net/&#39;</span>
-</span><span class='line'>  <span class="c1">// *     example 3: rawurldecode(&#39;http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a&#39;);</span>
-</span><span class='line'>  <span class="c1">// *     returns 3: &#39;http://www.google.nl/search?q=php.js&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=com.ubuntu:en-US:unofficial&amp;client=firefox-a&#39;</span>
-</span><span class='line'>  <span class="c1">// *     example 4: rawurldecode(&#39;-22%97bc%2Fbc&#39;);</span>
-</span><span class='line'>  <span class="c1">// *     returns 4: &#39;-22—bc/bc&#39;</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">str</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">// http://kevin.vanzonneveld.net</span>
+</span><span class='line'>    <span class="c1">// +   original by: Brett Zamir (http://brett-zamir.me)</span>
+</span><span class='line'>    <span class="c1">// +      input by: travc</span>
+</span><span class='line'>    <span class="c1">// +      input by: Brett Zamir (http://brett-zamir.me)</span>
+</span><span class='line'>    <span class="c1">// +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)</span>
+</span><span class='line'>    <span class="c1">// +      input by: Ratheous</span>
+</span><span class='line'>    <span class="c1">// +   reimplemented by: Brett Zamir (http://brett-zamir.me)</span>
+</span><span class='line'>    <span class="c1">// +      input by: lovio</span>
+</span><span class='line'>    <span class="c1">// +   improved by: Brett Zamir (http://brett-zamir.me)</span>
+</span><span class='line'>    <span class="c1">// %        note 1: Please be aware that this function expects to decode from UTF-8 encoded strings, as found on</span>
+</span><span class='line'>    <span class="c1">// %        note 1: pages served as UTF-8</span>
+</span><span class='line'>    <span class="c1">// *     example 1: rawurldecode(&#39;Kevin+van+Zonneveld%21&#39;);</span>
+</span><span class='line'>    <span class="c1">// *     returns 1: &#39;Kevin+van+Zonneveld!&#39;</span>
+</span><span class='line'>    <span class="c1">// *     example 2: rawurldecode(&#39;http%3A%2F%2Fkevin.vanzonneveld.net%2F&#39;);</span>
+</span><span class='line'>    <span class="c1">// *     returns 2: &#39;http://kevin.vanzonneveld.net/&#39;</span>
+</span><span class='line'>    <span class="c1">// *     example 3: rawurldecode(&#39;http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a&#39;);</span>
+</span><span class='line'>    <span class="c1">// *     returns 3: &#39;http://www.google.nl/search?q=php.js&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=com.ubuntu:en-US:unofficial&amp;client=firefox-a&#39;</span>
+</span><span class='line'>    <span class="c1">// *     example 4: rawurldecode(&#39;-22%97bc%2Fbc&#39;);</span>
+</span><span class='line'>    <span class="c1">// *     returns 4: &#39;-22—bc/bc&#39;</span>
+</span><span class='line'>    <span class="c1">// *     example 4: urldecode(&#39;%E5%A5%BD%3_4&#39;);</span>
+</span><span class='line'>    <span class="c1">// *     returns 4: &#39;\u597d%3_4&#39;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">decodeURIComponent</span><span class="p">((</span><span class="nx">str</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/%(?![\da-f]{2})/gi</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// PHP tolerates poorly formed escape sequences</span>
+</span><span class='line'>        <span class="k">return</span> <span class="s1">&#39;%25&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}));</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -233,239 +248,6 @@
 </ul>
 
 
-<h2>Legacy comments</h2>
-
-<p>These were imported from our old site. Please use disqus below for new comments</p>
-
-<div style="overflow-y: scroll; max-height: 500px;">
-<!-- Generated by Rakefile:build -->
-
-<strong>
-<a href="http://an3m1.com/" rel="nofollow">???? ????????</a>
-</strong>
-on 2012-04-17 15:33:39 <br />
-If I might —perhaps you should consider adding a few images. I don’t mean to disrespect what you’ve said ; its very enlightening, indeed. However, I think would respond to it more positively if they could be something tangible to your ideas 
-<hr />
-
-
-<strong>
-<a href="http://brett-zamir.me" rel="nofollow">Brett Zamir</a>
-</strong>
-on 2009-10-28 02:32:00 <br />
-@Joris: Thanks for your code (it&#8217;s helpful to have here for reference and makes a good complement to the previous code for urlencode and reposted just now in the comments at http://phpjs.org/functions/urlencode ), but I went ahead with the faster use of decodeURIComponent().
-<hr />
-
-
-<strong>
-<a href="http://brett-zamir.me" rel="nofollow">Brett Zamir</a>
-</strong>
-on 2009-10-26 01:07:41 <br />
-@Joris: Sorry I haven&#8217;t gotten to your post yet; that looks great! I&#8217;d like to test it out a little first and then commit, if you can bear with me a little&#8230;
-<hr />
-
-
-<strong>
-Joris van der Wel
-</strong>
-on 2009-09-29 16:14:40 <br />
-Incase anyone is interested, here is a version with full UTF-8 support written without decodeURIComponent or any maps.
-
-<pre><code>
-function rawurldecode(url)
-{
-    // This function mimmicks PHP's rawurldecode under UTF-8
-    // Any percentage notation is converted to its UTF-16 character.
-    // Only tested on Mozilla browsers (Firefox 3.5)
-    // Does NOT use any of decodeURIComponent, decodeURI, unescape, etc
-    // Supports 4 byte characters (so unicode characters 0x0000 through 0x10FFFF)
-    //
-    // Original by Joris van der Wel
-    var chr, a, len, ret, c, c2, c3, c4, hi, low;
-    
-    ret = '';
-    for (a = 0, len = url.length; a &lt; len; a++)
-    {
-        chr = url.charAt(a);
-        if (chr != '%')
-        {
-            ret += chr;
-            continue;
-        }
-        
-        c = parseInt(url.charAt(a+1) + url.charAt(a+2), 16);
-        if (isNaN(c))
-        {
-            ret += '%'; // If php comes across something invalid, it just shows it without parsing 
-            continue;
-        }
-        
-        a += 2; // skip 2
-        
-        ret += String.fromCharCode(c);
-    }
-    
-    // second pass, convert UTF-8 to UTF-16 (Strings in javascript (ECMA-262 to be exact) are UTF-16)
-    url = ret;
-    ret = '';
-    for (a = 0, len = url.length; a &lt; len; a++)
-    {
-        c = url.charCodeAt(a);
-        
-        //        c &amp; 1000 0000  === 0000 0000
-        if(      (c &amp;      0x80) === 0        ) // 0xxxxxxx
-        {
-            ret += url.charAt(a);
-        }
-        //        c &amp; 1110 0000  === 1100 0000
-        else if ((c &amp;      0xE0) ===      0xC0) // 110y yyxx    10xx xxxx
-        {
-            a++;
-            c2 = url.charCodeAt(a);
-            ret += String.fromCharCode(
-                    ((c  &amp; 0x1F) &lt;&lt; 6) | 
-                    ((c2 &amp; 0x3F) &lt;&lt; 0)
-                );
-        }
-        //        c &amp; 1111 0000  === 1110 0000
-        else if ((c &amp;      0xF0) ===      0xE0) // 1110 yyyy    10yy yyxx   10xx xxxx
-        {
-            a++;
-            c2 = url.charCodeAt(a);
-            a++;
-            c3 = url.charCodeAt(a);
-            ret += String.fromCharCode(
-                       ((c  &amp; 0x0F) &lt;&lt; 12) |
-                       ((c2 &amp; 0x3F) &lt;&lt; 6 ) |
-                       ((c3 &amp; 0x3F) &lt;&lt; 0 )
-                   );
-        }
-        //        c &amp; 1111 1000  === 1111 0000
-        else if ((c &amp;      0xF8) ===      0xF0) // 1111 0zzz    10zz yyyy   10yy yyxx   10xx xxxx 
-        {
-            a++;
-            c2 = url.charCodeAt(a);
-            a++;
-            c3 = url.charCodeAt(a);
-            a++;
-            c4 = url.charCodeAt(a);
-            
-            c = ((c  &amp; 0x07) &lt;&lt; 18) |
-                ((c2 &amp; 0x3F) &lt;&lt; 12) |
-                ((c3 &amp; 0x3F) &lt;&lt; 6 ) |
-                ((c4 &amp; 0x3F) &lt;&lt; 0 ) ;
-            
-            if (c &gt;= 0x10000) // split it up using surrogates
-            {
-                c -= 0x10000;
-                
-                hi  = (c &amp; 0xFFC00) &gt;&gt; 10; // first 10 bits
-                low = c &amp; 0x003FF; // last  10 bits
-                
-                hi  += 0xD800; // high surrogate range
-                low += 0xDC00; // low surrogate range
-                ret += String.fromCharCode(hi, low);
-            } 
-            else
-            {
-                ret += String.fromCharCode(c);
-            }
-        }
-    }
-    
-    return ret;
-}
-</code></pre>
-You could probably rewrite it to use only one loop, but that would turn into spaghetti code very fast
-
-Gr.
-<hr />
-
-
-<strong>
-<a href="http://kevin.vanzonneveld.net" rel="nofollow">Kevin van Zonneveld</a>
-</strong>
-on 2009-04-03 13:33:35 <br />
-@ travc &amp; Brett Zamir: Fixed in SVN: Thanks!
-<hr />
-
-
-<strong>
-Brett Zamir
-</strong>
-on 2009-03-30 16:19:31 <br />
-Sorry, it looks like to fully reflect PHP&#8217;s behavior, you have to add this to the histogram (all of our other related functions should be converted accordingly as well):
-
-<pre><code>
-histogram['\u20AC'] = '%80';
-histogram['\u0081'] = '%81';
-histogram['\u201A'] = '%82';
-histogram['\u0192'] = '%83';
-histogram['\u201E'] = '%84';
-histogram['\u2026'] = '%85';
-histogram['\u2020'] = '%86';
-histogram['\u2021'] = '%87';
-histogram['\u02C6'] = '%88';
-histogram['\u2030'] = '%89';
-histogram['\u0160'] = '%8A';
-histogram['\u2039'] = '%8B';
-histogram['\u0152'] = '%8C';
-histogram['\u008D'] = '%8D';
-histogram['\u017D'] = '%8E';
-histogram['\u008F'] = '%8F';
-histogram['\u0090'] = '%90';
-histogram['\u2018'] = '%91';
-histogram['\u2019'] = '%92';
-histogram['\u201C'] = '%93';
-histogram['\u201D'] = '%94';
-histogram['\u2022'] = '%95';
-histogram['\u2013'] = '%96';
-histogram['\u2014'] = '%97';
-histogram['\u02DC'] = '%98';
-histogram['\u2122'] = '%99';
-histogram['\u0161'] = '%9A';
-histogram['\u203A'] = '%9B';
-histogram['\u0153'] = '%9C';
-histogram['\u009D'] = '%9D';
-histogram['\u017E'] = '%9E';
-histogram['\u0178'] = '%9F';
-</code></pre>
-
-and then add this line right before the call to decodeURIComponent():
-
-<pre><code>
-ret = ret.replace(/%([a-fA-F][0-9a-fA-F])/g, function (all, hex) {return String.fromCharCode('0x'+hex);}); // These Latin-B have the same values in Unicode, so we can convert them like this
-</code></pre>
-<hr />
-
-
-<strong>
-travc
-</strong>
-on 2009-03-30 12:57:23 <br />
-Found an apparent bug&#8230;  I&#8217;ll try to track it down, but I&#8217;m a javascript noob.
-
-<pre><code>
-&lt;?  print rawurldecode('-22%97bc%2Fbc'); ?&gt;
-
-&lt;script type=&quot;text/javascript&quot;&gt;
-  var foo = rawurldecode('-22%97bc%2Fbc');
-  alert(foo);
-&lt;/script&gt;
-</code></pre>
-
-php part works fine,  js breaks.
-
-firebug reports:
-malformed URI sequence
-rawurldecode(&quot;-22%97bc%2Fbc&quot;)
-
-And, yes, this string comes from encoding in php with rawurlencode (from a big nasty db response).  
-<hr />
-
-
-</div>
-
-
   
     <footer>
       
@@ -494,6 +276,124 @@ And, yes, this string comes from encoding in php with rawurlencode (from a big n
   </section>
 
 </div>
+
+<aside class="sidebar">
+  
+    <section>
+	<h1>Sponsors</h1>
+	<p>
+		Struggling with file uploads? Let 
+		<a title="File uploading &amp; encoding as a service" style="color: #3464a4;" href="http://transloadit.com">Transloadit</a>
+		deal with progress bars, ffmpeg and imagemagick so 
+		you can focus on your site. <span style="color: green;">1GB Free</span>.
+	</p>
+</section>
+
+<!-- Generated by Rakefile:build -->
+<section>
+<h1>Categories</h1>
+<ul id='category-list'>
+<li><a href="/categories/array">array</a></li>
+
+<li><a href="/categories/bc">bc</a></li>
+
+<li><a href="/categories/classkit">classkit</a></li>
+
+<li><a href="/categories/classobj">classobj</a></li>
+
+<li><a href="/categories/ctype">ctype</a></li>
+
+<li><a href="/categories/datetime">datetime</a></li>
+
+<li><a href="/categories/errorfunc">errorfunc</a></li>
+
+<li><a href="/categories/exec">exec</a></li>
+
+<li><a href="/categories/filesystem">filesystem</a></li>
+
+<li><a href="/categories/funchand">funchand</a></li>
+
+<li><a href="/categories/i18n">i18n</a></li>
+
+<li><a href="/categories/info">info</a></li>
+
+<li><a href="/categories/json">json</a></li>
+
+<li><a href="/categories/language">language</a></li>
+
+<li><a href="/categories/mail">mail</a></li>
+
+<li><a href="/categories/math">math</a></li>
+
+<li><a href="/categories/misc">misc</a></li>
+
+<li><a href="/categories/net-gopher">net-gopher</a></li>
+
+<li><a href="/categories/network">network</a></li>
+
+<li><a href="/categories/objaggregation">objaggregation</a></li>
+
+<li><a href="/categories/outcontrol">outcontrol</a></li>
+
+<li><a href="/categories/pcre">pcre</a></li>
+
+<li><a href="/categories/runkit">runkit</a></li>
+
+<li><a href="/categories/stream">stream</a></li>
+
+<li><a href="/categories/strings">strings</a></li>
+
+<li><a href="/categories/url">url</a></li>
+
+<li><a href="/categories/var">var</a></li>
+
+<li><a href="/categories/xdiff">xdiff</a></li>
+
+<li><a href="/categories/xml">xml</a></li>
+
+</ul>
+</section>
+<section>
+	<h1>On the githubs</h1>
+	<style>
+		.on-the-githubs-events abbr{
+			display: none !important;
+		}
+		
+		.on-the-githubs-events p{
+			width: 200px;
+		}
+
+		.on-the-githubs-events li{
+			box-shadow: none !important;
+			-webkit-box-shadow: none !important;
+			-moz-box-shadow: none !important;
+			border: 0px none !important;
+		}
+	</style>
+	<ul class="on-the-githubs-events" data-event-source="repos/kvz/phpjs">Loading...</ul>
+	<br />
+	<br />
+</section>
+
+
+<section>
+  <h1>Donate</h1>
+  
+  <br />
+
+  <a href="http://www.pledgie.com/campaigns/5962"><img alt="Click here to lend your support to: phpjs and make a donation at www.pledgie.com !" src="http://www.pledgie.com/campaigns/5962.png?skin_name=chrome" border="0"></a>
+
+  <br />
+  <br />
+  
+  <iframe src="http://api.flattr.com/button/view/?url=http%3A%2F%2Fphpjs.org&amp;" width="55" height="62" frameborder="0" scrolling="no" border="0" marginheight="0" marginwidth="0" allowtransparency="true"></iframe>
+
+  
+</section>
+
+  
+</aside>
 
 
     </div>
@@ -559,8 +459,17 @@ And, yes, this string comes from encoding in php with rawurlencode (from a big n
   </script>
 
 
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//kvz.github.io/on-the-githubs/js/jquery.ghevents.min.js"></script>
 
 
+<script type="text/javascript">
+    $('.on-the-githubs-events').ghevents();
+    // If you use bootstrap and want to enable tooltips
+    // $('a[rel]').tooltip();
+</script>
 
+
+  
 </body>
 </html>
