@@ -225,34 +225,38 @@
 <span class='line-number'>110</span>
 <span class='line-number'>111</span>
 <span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">parse_str</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
-</span><span class='line'>  <span class="c1">// +   original by: Cagri Ekin</span>
-</span><span class='line'>  <span class="c1">// +   improved by: Michael White (http://getsprink.com)</span>
-</span><span class='line'>  <span class="c1">// +    tweaked by: Jack</span>
-</span><span class='line'>  <span class="c1">// +   bugfixed by: Onno Marsman</span>
-</span><span class='line'>  <span class="c1">// +   reimplemented by: stag019</span>
-</span><span class='line'>  <span class="c1">// +   bugfixed by: Brett Zamir (http://brett-zamir.me)</span>
-</span><span class='line'>  <span class="c1">// +   bugfixed by: stag019</span>
-</span><span class='line'>  <span class="c1">// +   input by: Dreamer</span>
-</span><span class='line'>  <span class="c1">// +   bugfixed by: Brett Zamir (http://brett-zamir.me)</span>
-</span><span class='line'>  <span class="c1">// +   bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)</span>
-</span><span class='line'>  <span class="c1">// +   input by: Zaide (http://zaidesthings.com/)</span>
-</span><span class='line'>  <span class="c1">// +   input by: David Pesta (http://davidpesta.com/)</span>
-</span><span class='line'>  <span class="c1">// +   input by: jeicquest</span>
-</span><span class='line'>  <span class="c1">// +   improved by: Brett Zamir (http://brett-zamir.me)</span>
-</span><span class='line'>  <span class="c1">// %        note 1: When no argument is specified, will put variables in global scope.</span>
-</span><span class='line'>  <span class="c1">// %        note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&amp;d====c</span>
-</span><span class='line'>  <span class="c1">// *     example 1: var arr = {};</span>
-</span><span class='line'>  <span class="c1">// *     example 1: parse_str(&#39;first=foo&amp;second=bar&#39;, arr);</span>
-</span><span class='line'>  <span class="c1">// *     results 1: arr == { first: &#39;foo&#39;, second: &#39;bar&#39; }</span>
-</span><span class='line'>  <span class="c1">// *     example 2: var arr = {};</span>
-</span><span class='line'>  <span class="c1">// *     example 2: parse_str(&#39;str_a=Jack+and+Jill+didn%27t+see+the+well.&#39;, arr);</span>
-</span><span class='line'>  <span class="c1">// *     results 2: arr == { str_a: &quot;Jack and Jill didn&#39;t see the well.&quot; }</span>
-</span><span class='line'>  <span class="c1">// *     example 3: var abc = {3:&#39;a&#39;};</span>
-</span><span class='line'>  <span class="c1">// *     example 3: parse_str(&#39;abc[a][b][&quot;c&quot;]=def&amp;abc[q]=t+5&#39;);</span>
-</span><span class='line'>  <span class="c1">// *     results 3: JSON.stringify(abc) === &#39;{&quot;3&quot;:&quot;a&quot;,&quot;a&quot;:{&quot;b&quot;:{&quot;c&quot;:&quot;def&quot;}},&quot;q&quot;:&quot;t 5&quot;}&#39;;</span>
-</span><span class='line'>
+</span><span class='line'>  <span class="c1">// +      original by: Cagri Ekin</span>
+</span><span class='line'>  <span class="c1">// +      improved by: Michael White (http://getsprink.com)</span>
+</span><span class='line'>  <span class="c1">// +       tweaked by: Jack</span>
+</span><span class='line'>  <span class="c1">// +      bugfixed by: Onno Marsman</span>
+</span><span class='line'>  <span class="c1">// + reimplemented by: stag019</span>
+</span><span class='line'>  <span class="c1">// +      bugfixed by: Brett Zamir (http://brett-zamir.me)</span>
+</span><span class='line'>  <span class="c1">// +      bugfixed by: stag019</span>
+</span><span class='line'>  <span class="c1">// +         input by: Dreamer</span>
+</span><span class='line'>  <span class="c1">// +      bugfixed by: Brett Zamir (http://brett-zamir.me)</span>
+</span><span class='line'>  <span class="c1">// +      bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)</span>
+</span><span class='line'>  <span class="c1">// +         input by: Zaide (http://zaidesthings.com/)</span>
+</span><span class='line'>  <span class="c1">// +         input by: David Pesta (http://davidpesta.com/)</span>
+</span><span class='line'>  <span class="c1">// +         input by: jeicquest</span>
+</span><span class='line'>  <span class="c1">// +      improved by: Brett Zamir (http://brett-zamir.me)</span>
+</span><span class='line'>  <span class="c1">// %           note 1: When no argument is specified, will put variables in global scope.</span>
+</span><span class='line'>  <span class="c1">// %           note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&amp;d====c</span>
+</span><span class='line'>  <span class="c1">// %             test: skip</span>
+</span><span class='line'>  <span class="c1">// *        example 1: var arr = {};</span>
+</span><span class='line'>  <span class="c1">// *        example 1: parse_str(&#39;first=foo&amp;second=bar&#39;, arr);</span>
+</span><span class='line'>  <span class="c1">// *        example 1: arr</span>
+</span><span class='line'>  <span class="c1">// *        returns 1: { first: &#39;foo&#39;, second: &#39;bar&#39; }</span>
+</span><span class='line'>  <span class="c1">// *        example 2: var arr = {};</span>
+</span><span class='line'>  <span class="c1">// *        example 2: parse_str(&#39;str_a=Jack+and+Jill+didn%27t+see+the+well.&#39;, arr);</span>
+</span><span class='line'>  <span class="c1">// *        example 2: arr</span>
+</span><span class='line'>  <span class="c1">// *        returns 2: { str_a: &quot;Jack and Jill didn&#39;t see the well.&quot; }</span>
+</span><span class='line'>  <span class="c1">// *        example 3: var abc = {3:&#39;a&#39;};</span>
+</span><span class='line'>  <span class="c1">// *        example 3: parse_str(&#39;abc[a][b][&quot;c&quot;]=def&amp;abc[q]=t+5&#39;);</span>
+</span><span class='line'>  <span class="c1">// *        returns 3: {&quot;3&quot;:&quot;a&quot;,&quot;a&quot;:{&quot;b&quot;:{&quot;c&quot;:&quot;def&quot;}},&quot;q&quot;:&quot;t 5&quot;}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">strArr</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">str</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^&amp;/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">),</span>
 </span><span class='line'>    <span class="nx">sal</span> <span class="o">=</span> <span class="nx">strArr</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
@@ -358,6 +362,70 @@ Do you have one? Then please just:</p>
 </ul>
 
 
+<h3>Example 1</h3>
+
+<p>This code</p>
+
+<figure class='code'><figcaption><span>example </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'><span class="nx">parse_str</span><span class="p">(</span><span class="s1">&#39;first=foo&amp;second=bar&#39;</span><span class="p">,</span> <span class="nx">arr</span><span class="p">);</span>
+</span><span class='line'><span class="nx">arr</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Should return</p>
+
+<figure class='code'><figcaption><span>returns </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span> <span class="nx">first</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="nx">second</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Example 2</h3>
+
+<p>This code</p>
+
+<figure class='code'><figcaption><span>example </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'><span class="nx">parse_str</span><span class="p">(</span><span class="s1">&#39;str_a=Jack+and+Jill+didn%27t+see+the+well.&#39;</span><span class="p">,</span> <span class="nx">arr</span><span class="p">);</span>
+</span><span class='line'><span class="nx">arr</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Should return</p>
+
+<figure class='code'><figcaption><span>returns </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span> <span class="nx">str_a</span><span class="o">:</span> <span class="s2">&quot;Jack and Jill didn&#39;t see the well.&quot;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Example 3</h3>
+
+<p>This code</p>
+
+<figure class='code'><figcaption><span>example </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">abc</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="o">:</span><span class="s1">&#39;a&#39;</span><span class="p">};</span>
+</span><span class='line'><span class="nx">parse_str</span><span class="p">(</span><span class="s1">&#39;abc[a][b][&quot;c&quot;]=def&amp;abc[q]=t+5&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Should return</p>
+
+<figure class='code'><figcaption><span>returns </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span><span class="s2">&quot;3&quot;</span><span class="o">:</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;c&quot;</span><span class="o">:</span><span class="s2">&quot;def&quot;</span><span class="p">}},</span><span class="s2">&quot;q&quot;</span><span class="o">:</span><span class="s2">&quot;t 5&quot;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h3>Other PHP functions in the strings extension</h3>
 
 <!-- Generated by Rakefile:build -->
@@ -374,6 +442,7 @@ Do you have one? Then please just:</p>
 <li><a href="/functions/convert_uuencode">convert_uuencode</a></li>
 <li><a href="/functions/count_chars">count_chars</a></li>
 <li><a href="/functions/crc32">crc32</a></li>
+<li><a href="/functions/echo">echo</a></li>
 <li><a href="/functions/explode">explode</a></li>
 <li><a href="/functions/get_html_translation_table">get_html_translation_table</a></li>
 <li><a href="/functions/html_entity_decode">html_entity_decode</a></li>
@@ -517,6 +586,8 @@ Do you have one? Then please just:</p>
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -568,6 +639,12 @@ Do you have one? Then please just:</p>
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />

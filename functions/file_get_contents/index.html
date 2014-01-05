@@ -365,12 +365,8 @@
 <span class='line-number'>260</span>
 <span class='line-number'>261</span>
 <span class='line-number'>262</span>
-<span class='line-number'>263</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">file_get_contents</span> <span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">flags</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">offset</span><span class="p">,</span> <span class="nx">maxLen</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="c1">// Read the entire file into a string</span>
-</span><span class='line'>  <span class="c1">//</span>
-</span><span class='line'>  <span class="c1">// version: 906.111</span>
-</span><span class='line'>  <span class="c1">// discuss at: http://phpjs.org/functions/file_get_contents</span>
+</span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
 </span><span class='line'>  <span class="c1">// +   original by: Legaev Andrey</span>
 </span><span class='line'>  <span class="c1">// +      input by: Jani Hartikainen</span>
 </span><span class='line'>  <span class="c1">// +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)</span>
@@ -387,8 +383,10 @@
 </span><span class='line'>  <span class="c1">// %        note 3: The context argument is only implemented for http, and only partially (see below for</span>
 </span><span class='line'>  <span class="c1">// %        note 3: &quot;Presently unimplemented HTTP context options&quot;); also the arguments passed to</span>
 </span><span class='line'>  <span class="c1">// %        note 3: notification are incomplete</span>
-</span><span class='line'>  <span class="c1">// *     example 1: file_get_contents(&#39;http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm&#39;);</span>
-</span><span class='line'>  <span class="c1">// *     returns 1: &#39;123&#39;</span>
+</span><span class='line'>  <span class="c1">// *          test: skip</span>
+</span><span class='line'>  <span class="c1">// *     example 1: var buf file_get_contents(&#39;http://google.com&#39;);</span>
+</span><span class='line'>  <span class="c1">// *     example 1: buf.indexOf(&#39;Google&#39;) !== -1</span>
+</span><span class='line'>  <span class="c1">// *     returns 1: true</span>
 </span><span class='line'>  <span class="c1">// Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">tmp</span><span class="p">,</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">[],</span>
 </span><span class='line'>    <span class="nx">newTmp</span> <span class="o">=</span> <span class="p">[],</span>
@@ -633,8 +631,20 @@
 
 
 <ul>
-<li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/file_get_contents.js">view on github</a></li>
-<li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/file_get_contents.js">edit on github</a></li>
+<li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/file_get_contents.js">Raw function on GitHub</a></li>
+</ul>
+
+
+<p>Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are
+the closest match to this hashtable-like data structure.</p>
+
+<p>Please also note that php.js offers community built functions and goes by the
+<a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald&#8217;s Theory</a>. We&#8217;ll put online
+functions that are far from perfect, in the hopes to spark better contributions.
+Do you have one? Then please just:</p>
+
+<ul>
+<li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/file_get_contents.js">Edit on GitHub</a></li>
 </ul>
 
 
@@ -644,7 +654,9 @@
 
 <figure class='code'><figcaption><span>example </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">file_get_contents</span><span class="p">(</span><span class="s1">&#39;http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm&#39;</span><span class="p">);</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">buf</span> <span class="nx">file_get_contents</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">buf</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Google&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -652,7 +664,7 @@
 
 <figure class='code'><figcaption><span>returns </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="s1">&#39;123&#39;</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kc">true</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -664,6 +676,7 @@
 <ul>
 <li><a href="/functions/basename">basename</a></li>
 <li><a href="/functions/dirname">dirname</a></li>
+<li><a href="/functions/file_get_contents">file_get_contents</a></li>
 <li><a href="/functions/pathinfo">pathinfo</a></li>
 <li><a href="/functions/realpath">realpath</a></li>
 </ul>
@@ -730,6 +743,8 @@
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -781,6 +796,12 @@
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />

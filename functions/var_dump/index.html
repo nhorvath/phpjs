@@ -274,6 +274,8 @@
 <span class='line-number'>156</span>
 <span class='line-number'>157</span>
 <span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">var_dump</span> <span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
 </span><span class='line'>  <span class="c1">// +   original by: Brett Zamir (http://brett-zamir.me)</span>
@@ -281,6 +283,7 @@
 </span><span class='line'>  <span class="c1">// +   improved by: Brett Zamir (http://brett-zamir.me)</span>
 </span><span class='line'>  <span class="c1">// -    depends on: echo</span>
 </span><span class='line'>  <span class="c1">// %        note 1: For returning a string, use var_export() with the second argument set to true</span>
+</span><span class='line'>  <span class="c1">// *          test: skip</span>
 </span><span class='line'>  <span class="c1">// *     example 1: var_dump(1);</span>
 </span><span class='line'>  <span class="c1">// *     returns 1: &#39;int(1)&#39;</span>
 </span><span class='line'>
@@ -290,6 +293,7 @@
 </span><span class='line'>    <span class="nx">lgth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class='line'>    <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class='line'>    <span class="nx">d</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">;</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">_getFuncName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="p">(</span><span class="sr">/\W*function\s+([\w\$]+)\s*\(/</span><span class="p">).</span><span class="nx">exec</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
@@ -571,6 +575,8 @@ Do you have one? Then please just:</p>
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -622,6 +628,12 @@ Do you have one? Then please just:</p>
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />

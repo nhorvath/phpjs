@@ -171,6 +171,7 @@
 <span class='line-number'>63</span>
 <span class='line-number'>64</span>
 <span class='line-number'>65</span>
+<span class='line-number'>66</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">htmlspecialchars</span> <span class="p">(</span><span class="nx">string</span><span class="p">,</span> <span class="nx">quote_style</span><span class="p">,</span> <span class="nx">charset</span><span class="p">,</span> <span class="nx">double_encode</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
 </span><span class='line'>  <span class="c1">// +   original by: Mirek Slugen</span>
@@ -189,8 +190,9 @@
 </span><span class='line'>  <span class="c1">// *     returns 1: &#39;&amp;lt;a href=&amp;#039;test&amp;#039;&amp;gt;Test&amp;lt;/a&amp;gt;&#39;</span>
 </span><span class='line'>  <span class="c1">// *     example 2: htmlspecialchars(&quot;ab\&quot;c&#39;d&quot;, [&#39;ENT_NOQUOTES&#39;, &#39;ENT_QUOTES&#39;]);</span>
 </span><span class='line'>  <span class="c1">// *     returns 2: &#39;ab&quot;c&amp;#039;d&#39;</span>
-</span><span class='line'>  <span class="c1">// *     example 3: htmlspecialchars(&quot;my &quot;&amp;entity;&quot; is still here&quot;, null, null, false);</span>
+</span><span class='line'>  <span class="c1">// *     example 3: htmlspecialchars(&#39;my &quot;&amp;entity;&quot; is still here&#39;, null, null, false);</span>
 </span><span class='line'>  <span class="c1">// *     returns 3: &#39;my &amp;quot;&amp;entity;&amp;quot; is still here&#39;</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">optTemp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class='line'>    <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class='line'>    <span class="nx">noquotes</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -299,7 +301,7 @@ Do you have one? Then please just:</p>
 
 <figure class='code'><figcaption><span>example </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">htmlspecialchars</span><span class="p">(</span><span class="s2">&quot;my &quot;</span><span class="o">&amp;</span><span class="nx">entity</span><span class="p">;</span><span class="s2">&quot; is still here&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">htmlspecialchars</span><span class="p">(</span><span class="s1">&#39;my &quot;&amp;entity;&quot; is still here&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -327,6 +329,7 @@ Do you have one? Then please just:</p>
 <li><a href="/functions/convert_uuencode">convert_uuencode</a></li>
 <li><a href="/functions/count_chars">count_chars</a></li>
 <li><a href="/functions/crc32">crc32</a></li>
+<li><a href="/functions/echo">echo</a></li>
 <li><a href="/functions/explode">explode</a></li>
 <li><a href="/functions/get_html_translation_table">get_html_translation_table</a></li>
 <li><a href="/functions/html_entity_decode">html_entity_decode</a></li>
@@ -470,6 +473,8 @@ Do you have one? Then please just:</p>
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -521,6 +526,12 @@ Do you have one? Then please just:</p>
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />

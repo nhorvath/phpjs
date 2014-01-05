@@ -19,7 +19,9 @@
 8
 9
 10
-function &hellip;">
+11
+12
+13 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -120,14 +122,20 @@ function &hellip;">
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">sha1_file</span> <span class="p">(</span><span class="nx">str_filename</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
 </span><span class='line'>  <span class="c1">// +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)</span>
 </span><span class='line'>  <span class="c1">// -    depends on: file_get_contents</span>
 </span><span class='line'>  <span class="c1">// -    depends on: sha1</span>
+</span><span class='line'>  <span class="c1">// *          test: skip</span>
 </span><span class='line'>  <span class="c1">// *     example 1: sha1_file(&#39;http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm&#39;);</span>
 </span><span class='line'>  <span class="c1">// *     returns 1: &#39;40bd001563085fc35165329ea1ff5c5ecbdbbeef&#39;</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">buf</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">file_get_contents</span><span class="p">(</span><span class="nx">str_filename</span><span class="p">);</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">sha1</span><span class="p">(</span><span class="nx">buf</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -185,6 +193,7 @@ Do you have one? Then please just:</p>
 <li><a href="/functions/convert_uuencode">convert_uuencode</a></li>
 <li><a href="/functions/count_chars">count_chars</a></li>
 <li><a href="/functions/crc32">crc32</a></li>
+<li><a href="/functions/echo">echo</a></li>
 <li><a href="/functions/explode">explode</a></li>
 <li><a href="/functions/get_html_translation_table">get_html_translation_table</a></li>
 <li><a href="/functions/html_entity_decode">html_entity_decode</a></li>
@@ -328,6 +337,8 @@ Do you have one? Then please just:</p>
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -379,6 +390,12 @@ Do you have one? Then please just:</p>
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />

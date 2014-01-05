@@ -142,14 +142,16 @@
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
+<span class='line-number'>28</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">vprintf</span> <span class="p">(</span><span class="nx">format</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
-</span><span class='line'>  <span class="c1">// +   original by: Ash Searle (http://hexmen.com/blog/)</span>
-</span><span class='line'>  <span class="c1">// +   improved by: Michael White (http://getsprink.com)</span>
+</span><span class='line'>  <span class="c1">// +      original by: Ash Searle (http://hexmen.com/blog/)</span>
+</span><span class='line'>  <span class="c1">// +      improved by: Michael White (http://getsprink.com)</span>
 </span><span class='line'>  <span class="c1">// + reimplemented by: Brett Zamir (http://brett-zamir.me)</span>
-</span><span class='line'>  <span class="c1">// -    depends on: sprintf</span>
-</span><span class='line'>  <span class="c1">// *     example 1: printf(&quot;%01.2f&quot;, 123.1);</span>
-</span><span class='line'>  <span class="c1">// *     returns 1: 6</span>
+</span><span class='line'>  <span class="c1">// -       depends on: sprintf</span>
+</span><span class='line'>  <span class="c1">// *        example 1: vprintf(&quot;%01.2f&quot;, 123.1);</span>
+</span><span class='line'>  <span class="c1">// *        returns 1: 6</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">body</span><span class="p">,</span> <span class="nx">elmt</span><span class="p">;</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
 </span><span class='line'>    <span class="nx">d</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">;</span>
@@ -196,7 +198,7 @@ Do you have one? Then please just:</p>
 
 <figure class='code'><figcaption><span>example </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">printf</span><span class="p">(</span><span class="s2">&quot;%01.2f&quot;</span><span class="p">,</span> <span class="mf">123.1</span><span class="p">);</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">vprintf</span><span class="p">(</span><span class="s2">&quot;%01.2f&quot;</span><span class="p">,</span> <span class="mf">123.1</span><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -224,6 +226,7 @@ Do you have one? Then please just:</p>
 <li><a href="/functions/convert_uuencode">convert_uuencode</a></li>
 <li><a href="/functions/count_chars">count_chars</a></li>
 <li><a href="/functions/crc32">crc32</a></li>
+<li><a href="/functions/echo">echo</a></li>
 <li><a href="/functions/explode">explode</a></li>
 <li><a href="/functions/get_html_translation_table">get_html_translation_table</a></li>
 <li><a href="/functions/html_entity_decode">html_entity_decode</a></li>
@@ -367,6 +370,8 @@ Do you have one? Then please just:</p>
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -418,6 +423,12 @@ Do you have one? Then please just:</p>
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />

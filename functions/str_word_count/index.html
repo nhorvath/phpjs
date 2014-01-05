@@ -210,6 +210,8 @@
 <span class='line-number'>100</span>
 <span class='line-number'>101</span>
 <span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">str_word_count</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">format</span><span class="p">,</span> <span class="nx">charlist</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
 </span><span class='line'>  <span class="c1">// +   original by: Ole Vrijenhoek</span>
@@ -224,7 +226,8 @@
 </span><span class='line'>  <span class="c1">// *     example 2: str_word_count(&quot;Hello fri3nd, you&#39;re\r\n       looking          good today!&quot;, 2);</span>
 </span><span class='line'>  <span class="c1">// *     returns 2: {0: &#39;Hello&#39;, 6: &#39;fri&#39;, 10: &#39;nd&#39;, 14: &quot;you&#39;re&quot;, 29: &#39;looking&#39;, 46: &#39;good&#39;, 51: &#39;today&#39;}</span>
 </span><span class='line'>  <span class="c1">// *     example 3: str_word_count(&quot;Hello fri3nd, you&#39;re\r\n       looking          good today!&quot;, 1, &#39;\u00e0\u00e1\u00e3\u00e73&#39;);</span>
-</span><span class='line'>  <span class="c1">// *     returns 3: [&#39;Hello&#39;, &#39;fri3nd&#39;, &#39;youre&#39;, &#39;looking&#39;, &#39;good&#39;, &#39;today&#39;]</span>
+</span><span class='line'>  <span class="c1">// *     returns 3: [&#39;Hello&#39;, &#39;fri3nd&#39;, &quot;you&#39;re&quot;, &#39;looking&#39;, &#39;good&#39;, &#39;today&#39;]</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
 </span><span class='line'>    <span class="nx">cl</span> <span class="o">=</span> <span class="nx">charlist</span> <span class="o">&amp;&amp;</span> <span class="nx">charlist</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
 </span><span class='line'>    <span class="nx">chr</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
@@ -310,6 +313,7 @@
 </span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">format</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>    <span class="k">return</span> <span class="nx">assoc</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="k">throw</span> <span class="s1">&#39;You have supplied an incorrect format&#39;</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -383,7 +387,7 @@ Do you have one? Then please just:</p>
 
 <figure class='code'><figcaption><span>returns </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;fri3nd&#39;</span><span class="p">,</span> <span class="s1">&#39;youre&#39;</span><span class="p">,</span> <span class="s1">&#39;looking&#39;</span><span class="p">,</span> <span class="s1">&#39;good&#39;</span><span class="p">,</span> <span class="s1">&#39;today&#39;</span><span class="p">]</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;fri3nd&#39;</span><span class="p">,</span> <span class="s2">&quot;you&#39;re&quot;</span><span class="p">,</span> <span class="s1">&#39;looking&#39;</span><span class="p">,</span> <span class="s1">&#39;good&#39;</span><span class="p">,</span> <span class="s1">&#39;today&#39;</span><span class="p">]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -403,6 +407,7 @@ Do you have one? Then please just:</p>
 <li><a href="/functions/convert_uuencode">convert_uuencode</a></li>
 <li><a href="/functions/count_chars">count_chars</a></li>
 <li><a href="/functions/crc32">crc32</a></li>
+<li><a href="/functions/echo">echo</a></li>
 <li><a href="/functions/explode">explode</a></li>
 <li><a href="/functions/get_html_translation_table">get_html_translation_table</a></li>
 <li><a href="/functions/html_entity_decode">html_entity_decode</a></li>
@@ -546,6 +551,8 @@ Do you have one? Then please just:</p>
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -597,6 +604,12 @@ Do you have one? Then please just:</p>
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />

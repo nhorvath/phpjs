@@ -158,6 +158,8 @@
 <span class='line-number'>52</span>
 <span class='line-number'>53</span>
 <span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">array_count_values</span> <span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
 </span><span class='line'>  <span class="c1">// +   original by: Ates Goral (http://magnetiq.com)</span>
@@ -172,6 +174,7 @@
 </span><span class='line'>  <span class="c1">// *     returns 2: {3:2, 5:1, &quot;foo&quot;:2, &quot;bar&quot;:1}</span>
 </span><span class='line'>  <span class="c1">// *     example 3: array_count_values([ true, 4.2, 42, &quot;fubar&quot; ]);</span>
 </span><span class='line'>  <span class="c1">// *     returns 3: {42:1, &quot;fubar&quot;:1}</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">tmp_arr</span> <span class="o">=</span> <span class="p">{},</span>
 </span><span class='line'>    <span class="nx">key</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
 </span><span class='line'>    <span class="nx">t</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
@@ -210,6 +213,7 @@
 </span><span class='line'>      <span class="p">}</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="k">return</span> <span class="nx">tmp_arr</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -293,6 +297,7 @@ Do you have one? Then please just:</p>
 
 
 <ul>
+<li><a href="/functions/array">array</a></li>
 <li><a href="/functions/array_change_key_case">array_change_key_case</a></li>
 <li><a href="/functions/array_chunk">array_chunk</a></li>
 <li><a href="/functions/array_combine">array_combine</a></li>
@@ -349,7 +354,6 @@ Do you have one? Then please just:</p>
 <li><a href="/functions/current">current</a></li>
 <li><a href="/functions/each">each</a></li>
 <li><a href="/functions/end">end</a></li>
-<li><a href="/functions/extract">extract</a></li>
 <li><a href="/functions/in_array">in_array</a></li>
 <li><a href="/functions/key">key</a></li>
 <li><a href="/functions/krsort">krsort</a></li>
@@ -432,6 +436,8 @@ Do you have one? Then please just:</p>
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -483,6 +489,12 @@ Do you have one? Then please just:</p>
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />

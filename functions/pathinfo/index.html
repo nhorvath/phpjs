@@ -247,6 +247,7 @@
 <span class='line-number'>132</span>
 <span class='line-number'>133</span>
 <span class='line-number'>134</span>
+<span class='line-number'>135</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">pathinfo</span> <span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
 </span><span class='line'>  <span class="c1">// +   original by: Nate</span>
@@ -264,6 +265,7 @@
 </span><span class='line'>  <span class="c1">// %        note 2: which makes it fully compliant with PHP syntax.</span>
 </span><span class='line'>  <span class="c1">// -    depends on: dirname</span>
 </span><span class='line'>  <span class="c1">// -    depends on: basename</span>
+</span><span class='line'>  <span class="c1">// *          test: skip</span>
 </span><span class='line'>  <span class="c1">// *     example 1: pathinfo(&#39;/www/htdocs/index.html&#39;, 1);</span>
 </span><span class='line'>  <span class="c1">// *     returns 1: &#39;/www/htdocs&#39;</span>
 </span><span class='line'>  <span class="c1">// *     example 2: pathinfo(&#39;/www/htdocs/index.html&#39;, &#39;PATHINFO_BASENAME&#39;);</span>
@@ -464,6 +466,7 @@ Do you have one? Then please just:</p>
 <ul>
 <li><a href="/functions/basename">basename</a></li>
 <li><a href="/functions/dirname">dirname</a></li>
+<li><a href="/functions/file_get_contents">file_get_contents</a></li>
 <li><a href="/functions/pathinfo">pathinfo</a></li>
 <li><a href="/functions/realpath">realpath</a></li>
 </ul>
@@ -530,6 +533,8 @@ Do you have one? Then please just:</p>
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -581,6 +586,12 @@ Do you have one? Then please just:</p>
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />

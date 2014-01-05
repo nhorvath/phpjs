@@ -150,31 +150,52 @@
 <span class='line-number'>32</span>
 <span class='line-number'>33</span>
 <span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">ini_set</span> <span class="p">(</span><span class="nx">varname</span><span class="p">,</span> <span class="nx">newvalue</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="c1">// http://kevin.vanzonneveld.net</span>
+</span><span class='line'>  <span class="c1">// From: http://phpjs.org/functions</span>
 </span><span class='line'>  <span class="c1">// +   original by: Brett Zamir (http://brett-zamir.me)</span>
 </span><span class='line'>  <span class="c1">// %        note 1: This will not set a global_value or access level for the ini item</span>
+</span><span class='line'>  <span class="c1">// *          test: skip</span>
 </span><span class='line'>  <span class="c1">// *     example 1: ini_set(&#39;date.timezone&#39;, &#39;America/Chicago&#39;);</span>
 </span><span class='line'>  <span class="c1">// *     returns 1: &#39;Asia/Hong_Kong&#39;</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">oldval</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span> <span class="o">||</span> <span class="p">{};</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span> <span class="o">||</span> <span class="p">{};</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">oldval</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">self</span>   <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">try</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span> <span class="o">||</span> <span class="p">{};</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span>          <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span> <span class="o">||</span> <span class="p">{};</span>
 </span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span><span class="p">[</span><span class="nx">varname</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span><span class="p">[</span><span class="nx">varname</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="nx">oldval</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span><span class="p">[</span><span class="nx">varname</span><span class="p">].</span><span class="nx">local_value</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">_setArr</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">oldval</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Although these are set individually, they are all accumulated</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">_setArr</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">oldval</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// Although these are set individually, they are all accumulated</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">oldval</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">that</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span><span class="p">[</span><span class="nx">varname</span><span class="p">].</span><span class="nx">local_value</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'>      <span class="nx">self</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span><span class="p">[</span><span class="nx">varname</span><span class="p">].</span><span class="nx">local_value</span> <span class="o">=</span> <span class="p">[];</span>
 </span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="nx">that</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span><span class="p">[</span><span class="nx">varname</span><span class="p">].</span><span class="nx">local_value</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newvalue</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">self</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span><span class="p">[</span><span class="nx">varname</span><span class="p">].</span><span class="nx">local_value</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newvalue</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">};</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">switch</span> <span class="p">(</span><span class="nx">varname</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="k">case</span> <span class="s1">&#39;extension&#39;</span><span class="o">:</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="k">this</span><span class="p">.</span><span class="nx">dl</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="k">this</span><span class="p">.</span><span class="nx">dl</span><span class="p">(</span><span class="nx">newvalue</span><span class="p">);</span> <span class="c1">// This function is only experimental in php.js</span>
+</span><span class='line'>      <span class="c1">// This function is only experimental in php.js</span>
+</span><span class='line'>      <span class="k">this</span><span class="p">.</span><span class="nx">dl</span><span class="p">(</span><span class="nx">newvalue</span><span class="p">);</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="nx">_setArr</span><span class="p">(</span><span class="nx">oldval</span><span class="p">,</span> <span class="nx">newvalue</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">break</span><span class="p">;</span>
@@ -182,14 +203,27 @@
 </span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">php_js</span><span class="p">.</span><span class="nx">ini</span><span class="p">[</span><span class="nx">varname</span><span class="p">].</span><span class="nx">local_value</span> <span class="o">=</span> <span class="nx">newvalue</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">break</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="k">return</span> <span class="nx">oldval</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
-<li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/ini_set.js">view on github</a></li>
-<li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/ini_set.js">edit on github</a></li>
+<li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/ini_set.js">Raw function on GitHub</a></li>
+</ul>
+
+
+<p>Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are
+the closest match to this hashtable-like data structure.</p>
+
+<p>Please also note that php.js offers community built functions and goes by the
+<a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald&#8217;s Theory</a>. We&#8217;ll put online
+functions that are far from perfect, in the hopes to spark better contributions.
+Do you have one? Then please just:</p>
+
+<ul>
+<li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/ini_set.js">Edit on GitHub</a></li>
 </ul>
 
 
@@ -217,10 +251,11 @@
 
 
 <ul>
-<li><a href="/functions/assert">assert</a></li>
 <li><a href="/functions/assert_options">assert_options</a></li>
 <li><a href="/functions/getenv">getenv</a></li>
 <li><a href="/functions/getlastmod">getlastmod</a></li>
+<li><a href="/functions/ini_get">ini_get</a></li>
+<li><a href="/functions/ini_set">ini_set</a></li>
 <li><a href="/functions/set_time_limit">set_time_limit</a></li>
 <li><a href="/functions/version_compare">version_compare</a></li>
 </ul>
@@ -287,6 +322,8 @@
 
 <li><a href="/categories/funchand">funchand</a></li>
 
+<li><a href="/categories/i18n">i18n</a></li>
+
 <li><a href="/categories/info">info</a></li>
 
 <li><a href="/categories/json">json</a></li>
@@ -338,6 +375,12 @@
 
 
 <section>
+  <h1>Build status</h1>
+
+  <p>
+    <a href="https://travis-ci.org/kvz/phpjs"><img src="https://travis-ci.org/kvz/phpjs.png?branch=master" /></a>
+  </p>
+
   <h1>Donate</h1>
   
   <br />
