@@ -46,7 +46,7 @@ $flags = $flags | PHPJS_Library_Compiler::COMPILE_MINFIED;
 #$flags = $flags | PHPJS_Library_Compiler::COMPILE_PACKED;
 
 echo "/*\n";
-echo " * This package built from phpjscompile.php > php.js in the tools directory of the PHPJS project.\n";
+echo " * This package built from phpjscompile.php > ../build/php.js in the tools directory of the PHPJS project.\n";
 echo " * You should update PHPJS from git before you build a new php.js with \"git pull\".\n *\n";
 echo " * Functions in this package: ";
 print_r($PHPJS_Compiler_Shell->getSelection());
