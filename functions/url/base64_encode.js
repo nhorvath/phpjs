@@ -9,6 +9,10 @@ function base64_encode(data) {
   // bugfixed by: Pellentesque Malesuada
   //   example 1: base64_encode('Kevin van Zonneveld');
   //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
+  //   example 2: base64_encode('a');
+  //   returns 2: 'YQ=='
+  //   example 3: base64_encode('✓ à la mode');
+  //   returns 3: '4pyTIMOgIGxhIG1vZGU='
 
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
@@ -20,7 +24,10 @@ function base64_encode(data) {
     return data;
   }
 
-  do { // pack three octets into four hexets
+  data = unescape(encodeURIComponent(data))
+
+  do {
+    // pack three octets into four hexets
     o1 = data.charCodeAt(i++);
     o2 = data.charCodeAt(i++);
     o3 = data.charCodeAt(i++);

@@ -7,14 +7,26 @@ setup:
 	cd .. ; \
 
 test:
-	make build
+	ulimit -n 1024 ||true
 	npm install
+	make build
 	./node_modules/.bin/mocha --reporter list
 	node bin/phpjs.js --action test --debug
 
 # Apply code standards & reformat headers
 cleanup:
 	node bin/phpjs.js --action cleanup
+
+serve:
+	python -m SimpleHTTPServer
+
+test-cleanup:
+	node bin/phpjs.js --action cleanup --name array_change_key_case
+	node bin/phpjs.js --action cleanup --name echo
+	git diff functions/array/array_change_key_case.js
+	git diff functions/strings/echo.js
+	git checkout -- functions/array/array_change_key_case.js
+	git checkout -- functions/strings/echo.js
 
 npm:
 	node bin/phpjs.js --action buildnpm --output build/npm.js
@@ -46,8 +58,8 @@ site:
 	bundle exec rake generate && \
 	bundle exec rake deploy ; \
 	cd .. ; \
-	git add . ; \
-	git commit -am "Update site" ; \
+	git add --all . ; \
+	git commit -anm "Update site" ; \
 	git push origin master
 
 site-clean:

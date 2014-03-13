@@ -8,6 +8,8 @@ var equal     = require('deep-equal');
 var __root    = __dirname + '/..';
 var beautify  = require('js-beautify').js_beautify;
 
+// Not ideal: http://stackoverflow.com/questions/8083410/how-to-set-default-timezone-in-node-js
+process.env.TZ = 'UTC';
 
 // --debug works out of the box. See -h
 cli.parse({
@@ -21,7 +23,20 @@ cli.parse({
 var PhpjsUtil = phpjsutil({
   injectDependencies: ['ini_set', 'ini_get'],
   equal             : equal,
-  debug             : cli.debug
+  debug             : cli.debug,
+  globals           : {
+    'XMLHttpRequest': '{}',
+    'window': '{' +
+      'window: {},' +
+      'document: {' +
+        'lastModified: 1388954399,' +
+        'getElementsByTagName: function(){return [];}' +
+      '},' +
+      'location: {' +
+        'href: ""' +
+      '}' +
+    '}',
+  }
 });
 
 // Environment-specific file opener. function name needs to
@@ -114,29 +129,37 @@ cli.cleanup = function(args, options) {
       }
     }
 
+    var indentation = 2;
+
+    var newBody = params.body;
+    // Place "if (x) { //" comments on next line
+    newBody = newBody.replace(/^( +)([^\{\n]+\{)( *)(\/\/.*)$/gm, '$1$2\n$1' + Array(indentation).join(' ') + '$4');
+    // Place "xyz(); //" comments on previous line
+    newBody = newBody.replace(/^( +)([^\. ][^\;\n]+\;)( *)(\/\/.*)$/gm, '$1$4\n$1$2');
+
     buf += '\n';
-    buf += '  ' + params.body;
+    buf += Array(indentation).join(' ') + newBody;
     buf += '\n';
     buf += '}\n';
 
     buf.replace(/\r/g, '');
 
     buf = beautify(buf, {
-      "indent_size": 2,
-      "indent_char": " ",
-      "indent_level": 0,
-      "indent_with_tabs": false,
-      "preserve_newlines": true,
-      "max_preserve_newlines": 2,
-      "jslint_happy": false,
-      "brace_style": "collapse",
-      "keep_array_indentation": false,
+      "indent_size"              : indentation,
+      "indent_char"              : " ",
+      "indent_level"             : 0,
+      "indent_with_tabs"         : false,
+      "preserve_newlines"        : true,
+      "max_preserve_newlines"    : 2,
+      "jslint_happy"             : true,
+      "brace_style"              : "collapse",
+      "keep_array_indentation"   : false,
       "keep_function_indentation": false,
-      "space_before_conditional": true,
-      "break_chained_methods": true,
-      "eval_code": false,
-      "unescape_strings": false,
-      "wrap_line_length": 120
+      "space_before_conditional" : true,
+      "break_chained_methods"    : true,
+      "eval_code"                : false,
+      "unescape_strings"         : false,
+      "wrap_line_length"         : 120
     });
 
     // console.log(buf);
@@ -152,6 +175,12 @@ cli.buildnpm = function(args, options) {
   fs.appendFileSync(options.output, '// \n');
   fs.appendFileSync(options.output, '// Make function changes in ./functions and \n');
   fs.appendFileSync(options.output, '// generator changes in ./lib/phpjsutil.js \n');
+
+  for (var global in PhpjsUtil.globals) {
+    fs.appendFileSync(options.output, 'exports.' + global + ' = ' + PhpjsUtil.globals[global] + ';\n');
+  }
+  fs.appendFileSync(options.output, 'exports.window.window = exports.window;\n');
+
   self.glob(pattern, function (err, params, file) {
     if (err) {
       return self.error('Could not glob for ' + pattern + '. ' + err);
@@ -189,11 +218,15 @@ cli.glob = function(pattern, cb) {
 };
 
 cli.test = function(args, options) {
-  var self    = this;
-  var pattern = __root + '/functions/' + options.category + '/' + options.name + '.js';
+  var self      = this;
+  var pattern   = __root + '/functions/' + options.category + '/' + options.name + '.js';
+  self.pass_cnt = 0;
+  self.know_cnt = 0;
+  self.fail_cnt = 0;
+  self.skip_cnt = 0;
 
   process.on('exit', function() {
-    var msg = self.pass_cnt + ' passed / ' + self.fail_cnt + ' failed / ' + self.skip_cnt + ' skipped';
+    var msg = self.pass_cnt + ' passed / ' + self.fail_cnt + ' failed  / ' + self.know_cnt + ' known / ' + self.skip_cnt + ' skipped';
     if (self.fail_cnt) {
       cli.fatal(msg);
     } else {
@@ -201,9 +234,8 @@ cli.test = function(args, options) {
     }
   });
 
-  self.pass_cnt = 0;
-  self.fail_cnt = 0;
-  self.skip_cnt = 0;
+  var knownFailures = fs.readFileSync(__root + '/known_failures.txt', 'utf-8').split('\n');
+
   self.glob(pattern, function(err, params, file) {
     if (err) {
       return self.error('Could not glob for ' + pattern + '. ' + err);
@@ -215,15 +247,22 @@ cli.test = function(args, options) {
     }
 
     PhpjsUtil.test(params, function(err, test, params) {
+      var testName = params.name + '#' + ( + (test.number * 1) + 1);
       if (!err) {
         self.pass_cnt++;
-        cli.debug('--> ' + params.name + '#' + ( + (test.number * 1) + 1) + ' passed. ');
+        cli.debug('--> ' + testName + ' passed. ');
       } else {
-        self.fail_cnt++;
-        cli.error('--> ' + params.name + '#' + ( + (test.number * 1) + 1) + ' failed. ');
-        cli.error(err);
-        if (options.abort) {
-          cli.fatal('Aborting on first failure as instructed. ');
+        if (knownFailures.indexOf(testName) > -1) {
+          cli.error('--> ' + testName + ' known error. ');
+          cli.error(err);
+          self.know_cnt++;
+        } else {
+          cli.error('--> ' + testName + ' failed. ');
+          cli.error(err);
+          self.fail_cnt++;
+          if (options.abort) {
+            cli.fatal('Aborting on first failure as instructed. ');
+          }
         }
       }
     });

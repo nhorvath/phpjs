@@ -16,74 +16,69 @@ function array_multisort(arr) {
   //        bits: HGFE DCBA
   //        args: Holds pointer to arguments for reassignment
 
-  var argl = arguments.length,
-    sal = 0,
-    flags = {
-      'SORT_REGULAR': 16,
-      'SORT_NUMERIC': 17,
-      'SORT_STRING': 18,
-      'SORT_ASC': 32,
-      'SORT_DESC': 40
-    },
-    sortArrs = [
-      []
-    ],
-    sortFlag = [0],
-    sortKeys = [
-      []
-    ],
-    g = 0,
-    i = 0,
-    j = 0,
-    k = '',
-    l = 0,
-    thingsToSort = [],
-    vkey = 0,
-    zlast = null,
-    args = arguments,
-    nLastSort = [],
-    lastSort = [],
-    lastSorts = [],
-    tmpArray = [],
-    elIndex = 0,
-    sortDuplicator = function(a, b) {
-      return nLastSort.shift();
-    };
+  var g, i, j, k, l, sal, vkey, elIndex, lastSorts, tmpArray, zlast;
 
-  sortFunctions = [
+  var sortFlag = [0];
+  var thingsToSort = [];
+  var nLastSort = [];
+  var lastSort = [];
+  // possibly redundant
+  var args = arguments;
+
+  var flags = {
+    'SORT_REGULAR': 16,
+    'SORT_NUMERIC': 17,
+    'SORT_STRING': 18,
+    'SORT_ASC': 32,
+    'SORT_DESC': 40
+  };
+
+  var sortDuplicator = function (a, b) {
+    return nLastSort.shift();
+  };
+
+  var sortFunctions = [
     [
 
-      function(a, b) {
+      function (a, b) {
         lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
         return a > b ? 1 : (a < b ? -1 : 0);
       },
-      function(a, b) {
+      function (a, b) {
         lastSort.push(b > a ? 1 : (b < a ? -1 : 0));
         return b > a ? 1 : (b < a ? -1 : 0);
       }
     ],
     [
 
-      function(a, b) {
+      function (a, b) {
         lastSort.push(a - b);
         return a - b;
       },
-      function(a, b) {
+      function (a, b) {
         lastSort.push(b - a);
         return b - a;
       }
     ],
     [
 
-      function(a, b) {
+      function (a, b) {
         lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0));
         return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0);
       },
-      function(a, b) {
+      function (a, b) {
         lastSort.push((b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0));
         return (b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0);
       }
     ]
+  ];
+
+  var sortArrs = [
+    []
+  ];
+
+  var sortKeys = [
+    []
   ];
 
   // Store first argument into sortArrs and sortKeys if an Object.
@@ -104,10 +99,11 @@ function array_multisort(arr) {
   // arrMainLength: Holds the length of the first array. All other arrays must be of equal length, otherwise function would return FALSE like in PHP
   //
   // sortComponents: Holds 2 indexes per every section of the array that can be sorted. As this is the start, the whole array can be sorted.
-  var arrMainLength = sortArrs[0].length,
-    sortComponents = [0, arrMainLength];
+  var arrMainLength = sortArrs[0].length;
+  var sortComponents = [0, arrMainLength];
 
   // Loop through all other arguments, checking lengths and sort flags of arrays and adding them to the above variables.
+  var argl = arguments.length;
   for (j = 1; j < argl; j++) {
     if (Object.prototype.toString.call(arguments[j]) === '[object Array]') {
       sortArrs[j] = arguments[j];
@@ -130,7 +126,8 @@ function array_multisort(arr) {
       }
     } else if (typeof arguments[j] === 'string') {
       var lFlag = sortFlag.pop();
-      if (typeof flags[arguments[j]] === 'undefined' || ((((flags[arguments[j]]) >>> 4) & (lFlag >>> 4)) > 0)) { // Keep extra parentheses around latter flags check to avoid minimization leading to CDATA closer
+      // Keep extra parentheses around latter flags check to avoid minimization leading to CDATA closer
+      if (typeof flags[arguments[j]] === 'undefined' || ((((flags[arguments[j]]) >>> 4) & (lFlag >>> 4)) > 0)) {
         return false;
       }
       sortFlag.push(lFlag + flags[arguments[j]]);
@@ -152,7 +149,7 @@ function array_multisort(arr) {
       nLastSort = [];
       lastSort = [];
 
-      // If ther are no sortComponents, then no more sorting is neeeded. Copy the array back to the argument.
+      // If there are no sortComponents, then no more sorting is neeeded. Copy the array back to the argument.
       if (sortComponents.length === 0) {
         if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
           args[i] = sortArrs[i];
@@ -180,7 +177,8 @@ function array_multisort(arr) {
       for (l = 0; l !== sortComponents.length; l += 2) {
         tmpArray = sortArrs[i].slice(sortComponents[l], sortComponents[l + 1] + 1);
         tmpArray.sort(sFunction);
-        lastSorts[l] = [].concat(lastSort); // Is there a better way to copy an array in Javascript?
+        // Is there a better way to copy an array in Javascript?
+        lastSorts[l] = [].concat(lastSort);
         elIndex = sortComponents[l];
         for (g in tmpArray) {
           if (tmpArray.hasOwnProperty(g)) {
@@ -199,7 +197,8 @@ function array_multisort(arr) {
           }
           for (l = 0; l !== sortComponents.length; l += 2) {
             tmpArray = sortArrs[j].slice(sortComponents[l], sortComponents[l + 1] + 1);
-            nLastSort = [].concat(lastSorts[l]); // alert(l + ':' + nLastSort);
+            // alert(l + ':' + nLastSort);
+            nLastSort = [].concat(lastSorts[l]);
             tmpArray.sort(sFunction);
             elIndex = sortComponents[l];
             for (g in tmpArray) {
