@@ -4,27 +4,28 @@
  *
  * Functions in this package: Array
 (
-    [0] => array_merge
-    [1] => in_array
-    [2] => base64_decode
-    [3] => base64_encode
-    [4] => date
-    [5] => date_parse
-    [6] => number_format
-    [7] => parse_url
-    [8] => preg_grep
-    [9] => preg_quote
-    [10] => sprintf
-    [11] => strtotime
-    [12] => trim
-    [13] => uniqid
-    [14] => urldecode
-    [15] => urlencode
-    [16] => utf8_decode
-    [17] => utf8_encode
-    [18] => min
-    [19] => max
-    [20] => log10
+    [0] => array_diff
+    [1] => array_merge
+    [2] => in_array
+    [3] => base64_decode
+    [4] => base64_encode
+    [5] => date
+    [6] => date_parse
+    [7] => number_format
+    [8] => parse_url
+    [9] => preg_grep
+    [10] => preg_quote
+    [11] => sprintf
+    [12] => strtotime
+    [13] => trim
+    [14] => uniqid
+    [15] => urldecode
+    [16] => urlencode
+    [17] => utf8_decode
+    [18] => utf8_encode
+    [19] => min
+    [20] => max
+    [21] => log10
 )
  */
 /* 
@@ -65,7 +66,9 @@
 
 (function(){if(typeof(this.PHP_JS)==="undefined"){var PHP_JS=function(cfgObj){if(!(this instanceof PHP_JS)){return new PHP_JS(cfgObj);}
 this.window=cfgObj&&cfgObj.window?cfgObj.window:window;this.php_js={};this.php_js.ini={};if(cfgObj){for(var ini in cfgObj.ini){this.php_js.ini[ini]={};this.php_js.ini[ini].local_value=cfgObj.ini[ini];this.php_js.ini[ini].global_value=cfgObj.ini[ini];}}};}
-var php_js_shared={};PHP_JS.prototype={constructor:PHP_JS,array_merge:function(){var args=Array.prototype.slice.call(arguments),argl=args.length,arg,retObj={},k='',argil=0,j=0,i=0,ct=0,toStr=Object.prototype.toString,retArr=true;for(i=0;i<argl;i++){if(toStr.call(args[i])!=='[object Array]'){retArr=false;break;}}
+var php_js_shared={};PHP_JS.prototype={constructor:PHP_JS,array_diff:function(arr1){var retArr={},argl=arguments.length,k1='',i=1,k='',arr={};arr1keys:for(k1 in arr1){for(i=1;i<argl;i++){arr=arguments[i];for(k in arr){if(arr[k]===arr1[k1]){continue arr1keys;}}
+retArr[k1]=arr1[k1];}}
+return retArr;},array_merge:function(){var args=Array.prototype.slice.call(arguments),argl=args.length,arg,retObj={},k='',argil=0,j=0,i=0,ct=0,toStr=Object.prototype.toString,retArr=true;for(i=0;i<argl;i++){if(toStr.call(args[i])!=='[object Array]'){retArr=false;break;}}
 if(retArr){retArr=[];for(i=0;i<argl;i++){retArr=retArr.concat(args[i]);}
 return retArr;}
 for(i=0,ct=0;i<argl;i++){arg=args[i];if(toStr.call(arg)==='[object Array]'){for(j=0,argil=arg.length;j<argil;j++){retObj[ct++]=arg[j];}}else{for(k in arg){if(arg.hasOwnProperty(k)){if(parseInt(k,10)+''===k){retObj[ct++]=arg[k];}else{retObj[k]=arg[k];}}}}}
