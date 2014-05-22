@@ -5,34 +5,36 @@
  * Functions in this package: Array
 (
     [0] => array_diff
-    [1] => array_merge
-    [2] => array_values
-    [3] => in_array
-    [4] => base64_decode
-    [5] => base64_encode
-    [6] => date
-    [7] => date_parse
-    [8] => number_format
-    [9] => parse_url
-    [10] => preg_grep
-    [11] => preg_quote
-    [12] => sprintf
-    [13] => strtotime
-    [14] => trim
-    [15] => uniqid
-    [16] => urldecode
-    [17] => urlencode
-    [18] => utf8_decode
-    [19] => utf8_encode
-    [20] => min
-    [21] => max
-    [22] => log10
+    [1] => array_keys
+    [2] => array_merge
+    [3] => array_values
+    [4] => in_array
+    [5] => is_numeric
+    [6] => base64_decode
+    [7] => base64_encode
+    [8] => date
+    [9] => date_parse
+    [10] => number_format
+    [11] => parse_url
+    [12] => preg_grep
+    [13] => preg_quote
+    [14] => sprintf
+    [15] => strtotime
+    [16] => trim
+    [17] => uniqid
+    [18] => urldecode
+    [19] => urlencode
+    [20] => utf8_decode
+    [21] => utf8_encode
+    [22] => min
+    [23] => max
+    [24] => log10
 )
  */
 /* 
  * More info at: http://phpjs.org
  * 
- * This is version: 2014-03-13
+ * This is version: 2014-05-22
  * php.js is copyright 2014 Kevin van Zonneveld.
  * 
  * Portions copyright lmeyrick (https://sourceforge.net/projects/bcmath-js/),
@@ -69,14 +71,18 @@
 this.window=cfgObj&&cfgObj.window?cfgObj.window:window;this.php_js={};this.php_js.ini={};if(cfgObj){for(var ini in cfgObj.ini){this.php_js.ini[ini]={};this.php_js.ini[ini].local_value=cfgObj.ini[ini];this.php_js.ini[ini].global_value=cfgObj.ini[ini];}}};}
 var php_js_shared={};PHP_JS.prototype={constructor:PHP_JS,array_diff:function(arr1){var retArr={},argl=arguments.length,k1='',i=1,k='',arr={};arr1keys:for(k1 in arr1){for(i=1;i<argl;i++){arr=arguments[i];for(k in arr){if(arr[k]===arr1[k1]){continue arr1keys;}}
 retArr[k1]=arr1[k1];}}
-return retArr;},array_merge:function(){var args=Array.prototype.slice.call(arguments),argl=args.length,arg,retObj={},k='',argil=0,j=0,i=0,ct=0,toStr=Object.prototype.toString,retArr=true;for(i=0;i<argl;i++){if(toStr.call(args[i])!=='[object Array]'){retArr=false;break;}}
+return retArr;},array_keys:function(input,search_value,argStrict){var search=typeof search_value!=='undefined',tmp_arr=[],strict=!!argStrict,include=true,key='';if(input&&typeof input==='object'&&input.change_key_case){return input.keys(search_value,argStrict);}
+for(key in input){if(input.hasOwnProperty(key)){include=true;if(search){if(strict&&input[key]!==search_value){include=false;}else if(input[key]!=search_value){include=false;}}
+if(include){tmp_arr[tmp_arr.length]=key;}}}
+return tmp_arr;},array_merge:function(){var args=Array.prototype.slice.call(arguments),argl=args.length,arg,retObj={},k='',argil=0,j=0,i=0,ct=0,toStr=Object.prototype.toString,retArr=true;for(i=0;i<argl;i++){if(toStr.call(args[i])!=='[object Array]'){retArr=false;break;}}
 if(retArr){retArr=[];for(i=0;i<argl;i++){retArr=retArr.concat(args[i]);}
 return retArr;}
 for(i=0,ct=0;i<argl;i++){arg=args[i];if(toStr.call(arg)==='[object Array]'){for(j=0,argil=arg.length;j<argil;j++){retObj[ct++]=arg[j];}}else{for(k in arg){if(arg.hasOwnProperty(k)){if(parseInt(k,10)+''===k){retObj[ct++]=arg[k];}else{retObj[k]=arg[k];}}}}}
 return retObj;},array_values:function(input){var tmp_arr=[],key='';if(input&&typeof input==='object'&&input.change_key_case){return input.values();}
 for(key in input){tmp_arr[tmp_arr.length]=input[key];}
 return tmp_arr;},in_array:function(needle,haystack,argStrict){var key='',strict=!!argStrict;if(strict){for(key in haystack){if(haystack[key]===needle){return true;}}}else{for(key in haystack){if(haystack[key]==needle){return true;}}}
-return false;},base64_decode:function(data){var b64='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';var o1,o2,o3,h1,h2,h3,h4,bits,i=0,ac=0,dec='',tmp_arr=[];if(!data){return data;}
+return false;},is_numeric:function(mixed_var){var whitespace=" \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000";return(typeof mixed_var==='number'||(typeof mixed_var==='string'&&whitespace.indexOf(mixed_var.slice(-1))===-
+1))&&mixed_var!==''&&!isNaN(mixed_var);},base64_decode:function(data){var b64='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';var o1,o2,o3,h1,h2,h3,h4,bits,i=0,ac=0,dec='',tmp_arr=[];if(!data){return data;}
 data+='';do{h1=b64.indexOf(data.charAt(i++));h2=b64.indexOf(data.charAt(i++));h3=b64.indexOf(data.charAt(i++));h4=b64.indexOf(data.charAt(i++));bits=h1<<18|h2<<12|h3<<6|h4;o1=bits>>16&0xff;o2=bits>>8&0xff;o3=bits&0xff;if(h3==64){tmp_arr[ac++]=String.fromCharCode(o1);}else if(h4==64){tmp_arr[ac++]=String.fromCharCode(o1,o2);}else{tmp_arr[ac++]=String.fromCharCode(o1,o2,o3);}}while(i<data.length);dec=tmp_arr.join('');return decodeURIComponent(escape(dec.replace(/\0+$/,'')));},base64_encode:function(data){var b64='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';var o1,o2,o3,h1,h2,h3,h4,bits,i=0,ac=0,enc='',tmp_arr=[];if(!data){return data;}
 data=unescape(encodeURIComponent(data))
 do{o1=data.charCodeAt(i++);o2=data.charCodeAt(i++);o3=data.charCodeAt(i++);bits=o1<<16|o2<<8|o3;h1=bits>>18&0x3f;h2=bits>>12&0x3f;h3=bits>>6&0x3f;h4=bits&0x3f;tmp_arr[ac++]=b64.charAt(h1)+b64.charAt(h2)+b64.charAt(h3)+b64.charAt(h4);}while(i<data.length);enc=tmp_arr.join('');var r=data.length%3;return(r?enc.slice(0,r-3):enc)+'==='.slice(r||3);},date:function(format,timestamp){var that=this;var jsdate,f;var txt_words=['Sun','Mon','Tues','Wednes','Thurs','Fri','Satur','January','February','March','April','May','June','July','August','September','October','November','December'];var formatChr=/\\?(.?)/gi;var formatChrCb=function(t,s){return f[t]?f[t]():s;};var _pad=function(n,c){n=String(n);while(n.length<c){n='0'+n;}

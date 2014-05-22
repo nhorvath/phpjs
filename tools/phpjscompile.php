@@ -17,9 +17,11 @@ $PHPJS_Compiler_Shell = new PHPJS_Library_Compiler_Shell($dirFunctions, $dirComp
 
 $PHPJS_Compiler_Shell->setSelection(array(
 	"function::array_diff",
+	"function::array_keys",
 	"function::array_merge",
 	"function::array_values",
 	"function::in_array",
+	"function::is_numeric",
 	"function::base64_decode",
 	"function::base64_encode",
 	"function::date",
