@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -lt 1 ] ; then
+if [ $# -ne 1 ] ; then
   echo "Usage $0 [commit message]"
   echo "This will pull from master repo and rebuild php.js"
   exit 1
@@ -13,5 +13,5 @@ cd tools
 ./phpjscompile.php > ../build/php.js
 cd ..
 git add .
-git commit -m '$@' .
+git commit -m "$1" .
 git push
