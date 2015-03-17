@@ -42,6 +42,8 @@ $PHPJS_Compiler_Shell->setSelection(array(
 	"function::min",
 	"function::max",
 	"function::log10"
+	"function::htmlspecialchars"
+	"function::htmlspecialchars_decode"
 ));
 
 // Set flags
