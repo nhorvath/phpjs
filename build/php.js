@@ -9,35 +9,39 @@
     [2] => array_merge
     [3] => array_unique
     [4] => array_values
-    [5] => in_array
-    [6] => is_numeric
-    [7] => base64_decode
-    [8] => base64_encode
-    [9] => date
-    [10] => date_parse
-    [11] => number_format
-    [12] => parse_url
-    [13] => preg_grep
-    [14] => preg_quote
-    [15] => sprintf
-    [16] => strtotime
-    [17] => trim
-    [18] => uniqid
-    [19] => urldecode
-    [20] => urlencode
-    [21] => utf8_decode
-    [22] => utf8_encode
-    [23] => min
-    [24] => max
-    [25] => log10
-    [26] => htmlspecialchars
-    [27] => htmlspecialchars_decode
+    [5] => sort
+    [6] => uasort
+    [7] => uksort
+    [8] => usort
+    [9] => in_array
+    [10] => is_numeric
+    [11] => base64_decode
+    [12] => base64_encode
+    [13] => date
+    [14] => date_parse
+    [15] => number_format
+    [16] => parse_url
+    [17] => preg_grep
+    [18] => preg_quote
+    [19] => sprintf
+    [20] => strtotime
+    [21] => trim
+    [22] => uniqid
+    [23] => urldecode
+    [24] => urlencode
+    [25] => utf8_decode
+    [26] => utf8_encode
+    [27] => min
+    [28] => max
+    [29] => log10
+    [30] => htmlspecialchars
+    [31] => htmlspecialchars_decode
 )
  */
 /* 
  * More info at: http://phpjs.org
  * 
- * This is version: 2015-03-17
+ * This is version: 2015-03-25
  * php.js is copyright 2015 Kevin van Zonneveld.
  * 
  * Portions copyright lmeyrick (https://sourceforge.net/projects/bcmath-js/),
@@ -85,7 +89,24 @@ return retObj;},array_unique:function(inputArr){var key='',tmp_arr2={},val='';va
 return false;};for(key in inputArr){if(inputArr.hasOwnProperty(key)){val=inputArr[key];if(false===__array_search(val,tmp_arr2)){tmp_arr2[key]=val;}}}
 return tmp_arr2;},array_values:function(input){var tmp_arr=[],key='';if(input&&typeof input==='object'&&input.change_key_case){return input.values();}
 for(key in input){tmp_arr[tmp_arr.length]=input[key];}
-return tmp_arr;},in_array:function(needle,haystack,argStrict){var key='',strict=!!argStrict;if(strict){for(key in haystack){if(haystack[key]===needle){return true;}}}else{for(key in haystack){if(haystack[key]==needle){return true;}}}
+return tmp_arr;},sort:function(inputArr,sort_flags){var valArr=[],keyArr=[],k='',i=0,sorter=false,that=this,strictForIn=false,populateArr=[];switch(sort_flags){case'SORT_STRING':sorter=function(a,b){return that.strnatcmp(a,b);};break;case'SORT_LOCALE_STRING':var loc=this.i18n_loc_get_default();sorter=this.php_js.i18nLocales[loc].sorting;break;case'SORT_NUMERIC':sorter=function(a,b){return(a-b);};break;case'SORT_REGULAR':default:sorter=function(a,b){var aFloat=parseFloat(a),bFloat=parseFloat(b),aNumeric=aFloat+''===a,bNumeric=bFloat+''===b;if(aNumeric&&bNumeric){return aFloat>bFloat?1:aFloat<bFloat?-1:0;}else if(aNumeric&&!bNumeric){return 1;}else if(!aNumeric&&bNumeric){return-1;}
+return a>b?1:a<b?-1:0;};break;}
+try{this.php_js=this.php_js||{};}catch(e){this.php_js={};}
+this.php_js.ini=this.php_js.ini||{};strictForIn=this.php_js.ini['phpjs.strictForIn']&&this.php_js.ini['phpjs.strictForIn'].local_value&&this.php_js.ini['phpjs.strictForIn'].local_value!=='off';populateArr=strictForIn?inputArr:populateArr;for(k in inputArr){if(inputArr.hasOwnProperty(k)){valArr.push(inputArr[k]);if(strictForIn){delete inputArr[k];}}}
+valArr.sort(sorter);for(i=0;i<valArr.length;i++){populateArr[i]=valArr[i];}
+return strictForIn||populateArr;},uasort:function(inputArr,sorter){var valArr=[],tempKeyVal,tempValue,ret,k='',i=0,strictForIn=false,populateArr={};if(typeof sorter==='string'){sorter=this[sorter];}else if(Object.prototype.toString.call(sorter)==='[object Array]'){sorter=this[sorter[0]][sorter[1]];}
+this.php_js=this.php_js||{};this.php_js.ini=this.php_js.ini||{};strictForIn=this.php_js.ini['phpjs.strictForIn']&&this.php_js.ini['phpjs.strictForIn'].local_value&&this.php_js.ini['phpjs.strictForIn'].local_value!=='off';populateArr=strictForIn?inputArr:populateArr;for(k in inputArr){if(inputArr.hasOwnProperty(k)){valArr.push([k,inputArr[k]]);if(strictForIn){delete inputArr[k];}}}
+valArr.sort(function(a,b){return sorter(a[1],b[1]);});for(i=0;i<valArr.length;i++){populateArr[valArr[i][0]]=valArr[i][1];}
+return strictForIn||populateArr;},uksort:function(inputArr,sorter){var tmp_arr={},keys=[],i=0,k='',strictForIn=false,populateArr={};if(typeof sorter==='string'){sorter=this.window[sorter];}
+for(k in inputArr){if(inputArr.hasOwnProperty(k)){keys.push(k);}}
+try{if(sorter){keys.sort(sorter);}else{keys.sort();}}catch(e){return false;}
+this.php_js=this.php_js||{};this.php_js.ini=this.php_js.ini||{};strictForIn=this.php_js.ini['phpjs.strictForIn']&&this.php_js.ini['phpjs.strictForIn'].local_value&&this.php_js.ini['phpjs.strictForIn'].local_value!=='off';populateArr=strictForIn?inputArr:populateArr;for(i=0;i<keys.length;i++){k=keys[i];tmp_arr[k]=inputArr[k];if(strictForIn){delete inputArr[k];}}
+for(i in tmp_arr){if(tmp_arr.hasOwnProperty(i)){populateArr[i]=tmp_arr[i];}}
+return strictForIn||populateArr;},usort:function(inputArr,sorter){var valArr=[],k='',i=0,strictForIn=false,populateArr={};if(typeof sorter==='string'){sorter=this[sorter];}else if(Object.prototype.toString.call(sorter)==='[object Array]'){sorter=this[sorter[0]][sorter[1]];}
+this.php_js=this.php_js||{};this.php_js.ini=this.php_js.ini||{};strictForIn=this.php_js.ini['phpjs.strictForIn']&&this.php_js.ini['phpjs.strictForIn'].local_value&&this.php_js.ini['phpjs.strictForIn'].local_value!=='off';populateArr=strictForIn?inputArr:populateArr;for(k in inputArr){if(inputArr.hasOwnProperty(k)){valArr.push(inputArr[k]);if(strictForIn){delete inputArr[k];}}}
+try{valArr.sort(sorter);}catch(e){return false;}
+for(i=0;i<valArr.length;i++){populateArr[i]=valArr[i];}
+return strictForIn||populateArr;},in_array:function(needle,haystack,argStrict){var key='',strict=!!argStrict;if(strict){for(key in haystack){if(haystack[key]===needle){return true;}}}else{for(key in haystack){if(haystack[key]==needle){return true;}}}
 return false;},is_numeric:function(mixed_var){var whitespace=" \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000";return(typeof mixed_var==='number'||(typeof mixed_var==='string'&&whitespace.indexOf(mixed_var.slice(-1))===-
 1))&&mixed_var!==''&&!isNaN(mixed_var);},base64_decode:function(data){var b64='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';var o1,o2,o3,h1,h2,h3,h4,bits,i=0,ac=0,dec='',tmp_arr=[];if(!data){return data;}
 data+='';do{h1=b64.indexOf(data.charAt(i++));h2=b64.indexOf(data.charAt(i++));h3=b64.indexOf(data.charAt(i++));h4=b64.indexOf(data.charAt(i++));bits=h1<<18|h2<<12|h3<<6|h4;o1=bits>>16&0xff;o2=bits>>8&0xff;o3=bits&0xff;if(h3==64){tmp_arr[ac++]=String.fromCharCode(o1);}else if(h4==64){tmp_arr[ac++]=String.fromCharCode(o1,o2);}else{tmp_arr[ac++]=String.fromCharCode(o1,o2,o3);}}while(i<data.length);dec=tmp_arr.join('');return decodeURIComponent(escape(dec.replace(/\0+$/,'')));},base64_encode:function(data){var b64='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';var o1,o2,o3,h1,h2,h3,h4,bits,i=0,ac=0,enc='',tmp_arr=[];if(!data){return data;}
