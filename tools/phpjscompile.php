@@ -19,6 +19,7 @@ $PHPJS_Compiler_Shell->setSelection(array(
 	"function::array_diff",
 	"function::array_keys",
 	"function::array_merge",
+	"function::array_search",
 	"function::array_unique",
 	"function::array_values",
 	"function::sort",

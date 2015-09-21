@@ -7,41 +7,42 @@
     [0] => array_diff
     [1] => array_keys
     [2] => array_merge
-    [3] => array_unique
-    [4] => array_values
-    [5] => sort
-    [6] => uasort
-    [7] => uksort
-    [8] => usort
-    [9] => in_array
-    [10] => is_numeric
-    [11] => base64_decode
-    [12] => base64_encode
-    [13] => date
-    [14] => date_parse
-    [15] => number_format
-    [16] => parse_url
-    [17] => preg_grep
-    [18] => preg_quote
-    [19] => sprintf
-    [20] => strtotime
-    [21] => trim
-    [22] => uniqid
-    [23] => urldecode
-    [24] => urlencode
-    [25] => utf8_decode
-    [26] => utf8_encode
-    [27] => min
-    [28] => max
-    [29] => log10
-    [30] => htmlspecialchars
-    [31] => htmlspecialchars_decode
+    [3] => array_search
+    [4] => array_unique
+    [5] => array_values
+    [6] => sort
+    [7] => uasort
+    [8] => uksort
+    [9] => usort
+    [10] => in_array
+    [11] => is_numeric
+    [12] => base64_decode
+    [13] => base64_encode
+    [14] => date
+    [15] => date_parse
+    [16] => number_format
+    [17] => parse_url
+    [18] => preg_grep
+    [19] => preg_quote
+    [20] => sprintf
+    [21] => strtotime
+    [22] => trim
+    [23] => uniqid
+    [24] => urldecode
+    [25] => urlencode
+    [26] => utf8_decode
+    [27] => utf8_encode
+    [28] => min
+    [29] => max
+    [30] => log10
+    [31] => htmlspecialchars
+    [32] => htmlspecialchars_decode
 )
  */
 /* 
  * More info at: http://phpjs.org
  * 
- * This is version: 2015-03-25
+ * This is version: 2015-09-21
  * php.js is copyright 2015 Kevin van Zonneveld.
  * 
  * Portions copyright lmeyrick (https://sourceforge.net/projects/bcmath-js/),
@@ -85,7 +86,14 @@ return tmp_arr;},array_merge:function(){var args=Array.prototype.slice.call(argu
 if(retArr){retArr=[];for(i=0;i<argl;i++){retArr=retArr.concat(args[i]);}
 return retArr;}
 for(i=0,ct=0;i<argl;i++){arg=args[i];if(toStr.call(arg)==='[object Array]'){for(j=0,argil=arg.length;j<argil;j++){retObj[ct++]=arg[j];}}else{for(k in arg){if(arg.hasOwnProperty(k)){if(parseInt(k,10)+''===k){retObj[ct++]=arg[k];}else{retObj[k]=arg[k];}}}}}
-return retObj;},array_unique:function(inputArr){var key='',tmp_arr2={},val='';var __array_search=function(needle,haystack){var fkey='';for(fkey in haystack){if(haystack.hasOwnProperty(fkey)){if((haystack[fkey]+'')===(needle+'')){return fkey;}}}
+return retObj;},array_search:function(needle,haystack,argStrict){var strict=!!argStrict,key='';if(haystack&&typeof haystack==='object'&&haystack.change_key_case){return haystack.search(needle,argStrict);}
+if(typeof needle==='object'&&needle.exec){if(!strict){var flags='i'+(needle.global?'g':'')+
+(needle.multiline?'m':'')+
+(needle.sticky?'y':'');needle=new RegExp(needle.source,flags);}
+for(key in haystack){if(haystack.hasOwnProperty(key)){if(needle.test(haystack[key])){return key;}}}
+return false;}
+for(key in haystack){if(haystack.hasOwnProperty(key)){if((strict&&haystack[key]===needle)||(!strict&&haystack[key]==needle)){return key;}}}
+return false;},array_unique:function(inputArr){var key='',tmp_arr2={},val='';var __array_search=function(needle,haystack){var fkey='';for(fkey in haystack){if(haystack.hasOwnProperty(fkey)){if((haystack[fkey]+'')===(needle+'')){return fkey;}}}
 return false;};for(key in inputArr){if(inputArr.hasOwnProperty(key)){val=inputArr[key];if(false===__array_search(val,tmp_arr2)){tmp_arr2[key]=val;}}}
 return tmp_arr2;},array_values:function(input){var tmp_arr=[],key='';if(input&&typeof input==='object'&&input.change_key_case){return input.values();}
 for(key in input){tmp_arr[tmp_arr.length]=input[key];}
@@ -121,15 +129,15 @@ if(component){return uri[component.replace('PHP_URL_','').toLowerCase()];}
 if(mode!=='php'){var name=(ini['phpjs.parse_url.queryKey']&&ini['phpjs.parse_url.queryKey'].local_value)||'queryKey';parser=/(?:^|&)([^&=]*)=?([^&]*)/g;uri[name]={};query=uri[key[12]]||'';query.replace(parser,function($0,$1,$2){if($1){uri[name][$1]=$2;}});}
 delete uri.source;return uri;},preg_grep:function(pattern,input,flags){var p='';var retObj={};var invert=(flags===1||flags==='PREG_GREP_INVERT');if(typeof pattern==='string'){pattern=eval(pattern);}
 if(invert){for(p in input){if((input[p]+'').search(pattern)===-1){retObj[p]=input[p];}}}else{for(p in input){if((input[p]+'').search(pattern)!==-1){retObj[p]=input[p];}}}
-return retObj;},preg_quote:function(str,delimiter){return String(str).replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\'+(delimiter||'')+'-]','g'),'\\$&');},sprintf:function(){var regex=/%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;var a=arguments;var i=0;var format=a[i++];var pad=function(str,len,chr,leftJustify){if(!chr){chr=' ';}
+return retObj;},preg_quote:function(str,delimiter){return String(str).replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\'+(delimiter||'')+'-]','g'),'\\$&');},sprintf:function(){var regex=/%%|%(\d+\$)?([\-+\'#0 ]*)(\*\d+\$|\*|\d+)?(?:\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;var a=arguments;var i=0;var format=a[i++];var pad=function(str,len,chr,leftJustify){if(!chr){chr=' ';}
 var padding=(str.length>=len)?'':new Array(1+len-str.length>>>0).join(chr);return leftJustify?str+padding:padding+str;};var justify=function(value,prefix,leftJustify,minWidth,zeroPad,customPadChar){var diff=minWidth-value.length;if(diff>0){if(leftJustify||!zeroPad){value=pad(value,minWidth,customPadChar,leftJustify);}else{value=value.slice(0,prefix.length)+pad('',diff,'0',true)+value.slice(prefix.length);}}
-return value;};var formatBaseX=function(value,base,prefix,leftJustify,minWidth,precision,zeroPad){var number=value>>>0;prefix=prefix&&number&&{'2':'0b','8':'0','16':'0x'}[base]||'';value=prefix+pad(number.toString(base),precision||0,'0',false);return justify(value,prefix,leftJustify,minWidth,zeroPad);};var formatString=function(value,leftJustify,minWidth,precision,zeroPad,customPadChar){if(precision!=null){value=value.slice(0,precision);}
-return justify(value,'',leftJustify,minWidth,zeroPad,customPadChar);};var doFormat=function(substring,valueIndex,flags,minWidth,_,precision,type){var number,prefix,method,textTransform,value;if(substring==='%%'){return'%';}
-var leftJustify=false;var positivePrefix='';var zeroPad=false;var prefixBaseX=false;var customPadChar=' ';var flagsl=flags.length;for(var j=0;flags&&j<flagsl;j++){switch(flags.charAt(j)){case' ':positivePrefix=' ';break;case'+':positivePrefix='+';break;case'-':leftJustify=true;break;case"'":customPadChar=flags.charAt(j+1);break;case'0':zeroPad=true;customPadChar='0';break;case'#':prefixBaseX=true;break;}}
-if(!minWidth){minWidth=0;}else if(minWidth==='*'){minWidth=+a[i++];}else if(minWidth.charAt(0)=='*'){minWidth=+a[minWidth.slice(1,-1)];}else{minWidth=+minWidth;}
+return value;};var formatBaseX=function(value,base,prefix,leftJustify,minWidth,precision,zeroPad){var number=value>>>0;prefix=(prefix&&number&&{'2':'0b','8':'0','16':'0x'}[base])||'';value=prefix+pad(number.toString(base),precision||0,'0',false);return justify(value,prefix,leftJustify,minWidth,zeroPad);};var formatString=function(value,leftJustify,minWidth,precision,zeroPad,customPadChar){if(precision!==null&&precision!==undefined){value=value.slice(0,precision);}
+return justify(value,'',leftJustify,minWidth,zeroPad,customPadChar);};var doFormat=function(substring,valueIndex,flags,minWidth,precision,type){var number,prefix,method,textTransform,value;if(substring==='%%'){return'%';}
+var leftJustify=false;var positivePrefix='';var zeroPad=false;var prefixBaseX=false;var customPadChar=' ';var flagsl=flags.length;var j;for(j=0;flags&&j<flagsl;j++){switch(flags.charAt(j)){case' ':positivePrefix=' ';break;case'+':positivePrefix='+';break;case'-':leftJustify=true;break;case"'":customPadChar=flags.charAt(j+1);break;case'0':zeroPad=true;customPadChar='0';break;case'#':prefixBaseX=true;break;}}
+if(!minWidth){minWidth=0;}else if(minWidth==='*'){minWidth=+a[i++];}else if(minWidth.charAt(0)==='*'){minWidth=+a[minWidth.slice(1,-1)];}else{minWidth=+minWidth;}
 if(minWidth<0){minWidth=-minWidth;leftJustify=true;}
 if(!isFinite(minWidth)){throw new Error('sprintf: (minimum-)width must be finite');}
-if(!precision){precision='fFeE'.indexOf(type)>-1?6:(type==='d')?0:undefined;}else if(precision==='*'){precision=+a[i++];}else if(precision.charAt(0)=='*'){precision=+a[precision.slice(1,-1)];}else{precision=+precision;}
+if(!precision){precision='fFeE'.indexOf(type)>-1?6:(type==='d')?0:undefined;}else if(precision==='*'){precision=+a[i++];}else if(precision.charAt(0)==='*'){precision=+a[precision.slice(1,-1)];}else{precision=+precision;}
 value=valueIndex?a[valueIndex.slice(0,-1)]:a[i++];switch(type){case's':return formatString(String(value),leftJustify,minWidth,precision,zeroPad,customPadChar);case'c':return formatString(String.fromCharCode(+value),leftJustify,minWidth,precision,zeroPad);case'b':return formatBaseX(value,2,prefixBaseX,leftJustify,minWidth,precision,zeroPad);case'o':return formatBaseX(value,8,prefixBaseX,leftJustify,minWidth,precision,zeroPad);case'x':return formatBaseX(value,16,prefixBaseX,leftJustify,minWidth,precision,zeroPad);case'X':return formatBaseX(value,16,prefixBaseX,leftJustify,minWidth,precision,zeroPad).toUpperCase();case'u':return formatBaseX(value,10,prefixBaseX,leftJustify,minWidth,precision,zeroPad);case'i':case'd':number=+value||0;number=Math.round(number-number%1);prefix=number<0?'-':positivePrefix;value=prefix+pad(String(Math.abs(number)),precision,'0',false);return justify(value,prefix,leftJustify,minWidth,zeroPad);case'e':case'E':case'f':case'F':case'g':case'G':number=+value;prefix=number<0?'-':positivePrefix;method=['toExponential','toFixed','toPrecision']['efg'.indexOf(type.toLowerCase())];textTransform=['toString','toUpperCase']['eEfFgG'.indexOf(type)%2];value=prefix+Math.abs(number)[method](precision);return justify(value,prefix,leftJustify,minWidth,zeroPad)[textTransform]();default:return substring;}};return format.replace(regex,doFormat);},strtotime:function(text,now){var parsed,match,today,year,date,days,ranges,len,times,regex,i,fail=false;if(!text){return fail;}
 text=text.replace(/^\s+|\s+$/g,'').replace(/\s{2,}/g,' ').replace(/[\t\r\n]/g,'').toLowerCase();match=text.match(/^(\d{1,4})([\-\.\/\:])(\d{1,2})([\-\.\/\:])(\d{1,4})(?:\s(\d{1,2}):(\d{2})?:?(\d{2})?)?(?:\s([A-Z]+)?)?$/);if(match&&match[2]===match[4]){if(match[1]>1901){switch(match[2]){case'-':{if(match[3]>12||match[5]>31){return fail;}
 return new Date(match[1],parseInt(match[3],10)-1,match[5],match[6]||0,match[7]||0,match[8]||0,match[9]||0)/1000;}
@@ -153,6 +161,8 @@ case':':{if(match[1]>23||match[3]>59||match[5]>59){return fail;}
 today=new Date();return new Date(today.getFullYear(),today.getMonth(),today.getDate(),match[1]||0,match[3]||0,match[5]||0)/1000;}}}}
 if(text==='now'){return now===null||isNaN(now)?new Date().getTime()/1000|0:now|0;}
 if(!isNaN(parsed=Date.parse(text))){return parsed/1000|0;}
+if(match=text.match(/^([0-9]{4}-[0-9]{2}-[0-9]{2})[ t]([0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?)([\+-][0-9]{2}(:[0-9]{2})?|z)/)){if(match[4]=='z'){match[4]='Z';}else if(match[4].match(/^([\+-][0-9]{2})$/)){match[4]=match[4]+':00';}
+if(!isNaN(parsed=Date.parse(match[1]+'T'+match[2]+match[4]))){return parsed/1000|0;}}
 date=now?new Date(now*1000):new Date();days={'sun':0,'mon':1,'tue':2,'wed':3,'thu':4,'fri':5,'sat':6};ranges={'yea':'FullYear','mon':'Month','day':'Date','hou':'Hours','min':'Minutes','sec':'Seconds'};function lastNext(type,range,modifier){var diff,day=days[range];if(typeof day!=='undefined'){diff=day-date.getDay();if(diff===0){diff=7*modifier;}else if(diff>0&&type==='last'){diff-=7;}else if(diff<0&&type==='next'){diff+=7;}
 date.setDate(date.getDate()+diff);}}
 function process(val){var splt=val.split(' '),type=splt[0],range=splt[1].substring(0,3),typeIsNumber=/\d+/.test(type),ago=splt[2]==='ago',num=(type==='last'?-1:1)*(ago?-1:1);if(typeIsNumber){num*=parseInt(type,10);}
