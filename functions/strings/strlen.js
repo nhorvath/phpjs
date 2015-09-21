@@ -21,11 +21,11 @@ function strlen(string) {
     lgth = 0;
 
   if (!this.php_js || !this.php_js.ini || !this.php_js.ini['unicode.semantics'] || this.php_js.ini[
-    'unicode.semantics'].local_value.toLowerCase() !== 'on') {
+      'unicode.semantics'].local_value.toLowerCase() !== 'on') {
     return string.length;
   }
 
-  var getWholeChar = function (str, i) {
+  var getWholeChar = function(str, i) {
     var code = str.charCodeAt(i);
     var next = '',
       prev = '';

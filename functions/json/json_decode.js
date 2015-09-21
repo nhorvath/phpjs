@@ -8,12 +8,12 @@ function json_decode(str_json) {
   //        returns 1: [1]
 
   /*
-    http://www.JSON.org/json2.js
-    2008-11-19
-    Public Domain.
-    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-    See http://www.JSON.org/js.html
-  */
+       http://www.JSON.org/json2.js
+       2008-11-19
+       Public Domain.
+       NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+       See http://www.JSON.org/js.html
+     */
 
   var json = this.window.JSON;
   if (typeof json === 'object' && typeof json.parse === 'function') {
@@ -39,9 +39,9 @@ function json_decode(str_json) {
   // incorrectly, either silently deleting them, or treating them as line endings.
   cx.lastIndex = 0;
   if (cx.test(text)) {
-    text = text.replace(cx, function (a) {
+    text = text.replace(cx, function(a) {
       return '\\u' + ('0000' + a.charCodeAt(0)
-        .toString(16))
+          .toString(16))
         .slice(-4);
     });
   }

@@ -26,47 +26,47 @@ function array_multisort(arr) {
   var args = arguments;
 
   var flags = {
-    'SORT_REGULAR': 16,
-    'SORT_NUMERIC': 17,
-    'SORT_STRING': 18,
-    'SORT_ASC': 32,
-    'SORT_DESC': 40
+    'SORT_REGULAR' : 16,
+    'SORT_NUMERIC' : 17,
+    'SORT_STRING'  : 18,
+    'SORT_ASC'     : 32,
+    'SORT_DESC'    : 40
   };
 
-  var sortDuplicator = function (a, b) {
+  var sortDuplicator = function(a, b) {
     return nLastSort.shift();
   };
 
   var sortFunctions = [
     [
 
-      function (a, b) {
+      function(a, b) {
         lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
         return a > b ? 1 : (a < b ? -1 : 0);
       },
-      function (a, b) {
+      function(a, b) {
         lastSort.push(b > a ? 1 : (b < a ? -1 : 0));
         return b > a ? 1 : (b < a ? -1 : 0);
       }
     ],
     [
 
-      function (a, b) {
+      function(a, b) {
         lastSort.push(a - b);
         return a - b;
       },
-      function (a, b) {
+      function(a, b) {
         lastSort.push(b - a);
         return b - a;
       }
     ],
     [
 
-      function (a, b) {
+      function(a, b) {
         lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0));
         return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0);
       },
-      function (a, b) {
+      function(a, b) {
         lastSort.push((b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0));
         return (b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0);
       }

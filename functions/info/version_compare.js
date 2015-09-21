@@ -30,16 +30,16 @@ function version_compare(v1, v2, operator) {
     // If a non-numerical value can't be mapped to this table, it receives
     // -7 as its value.
     vm = {
-      'dev': -6,
-      'alpha': -5,
-      'a': -5,
-      'beta': -4,
-      'b': -4,
-      'RC': -3,
-      'rc': -3,
-      '#': -2,
-      'p': 1,
-      'pl': 1
+      'dev'   : -6,
+      'alpha' : -5,
+      'a'     : -5,
+      'beta'  : -4,
+      'b'     : -4,
+      'RC'    : -3,
+      'rc'    : -3,
+      '#'     : -2,
+      'p'     : 1,
+      'pl'    : 1
     },
     // This function will be called to prepare each version argument.
     // It replaces every _, -, and + with a dot.
@@ -50,7 +50,7 @@ function version_compare(v1, v2, operator) {
     // even less than an unexisting value in vm (-7), hence [-8].
     // It's also important to not strip spaces because of this.
     //   version_compare('', ' ') == 1
-    prepVersion = function (v) {
+    prepVersion = function(v) {
       v = ('' + v)
         .replace(/[_\-+]/g, '.');
       v = v.replace(/([^.\d]+)/g, '.$1.')
@@ -61,7 +61,7 @@ function version_compare(v1, v2, operator) {
   // Empty component becomes 0.
   // Non-numerical component becomes a negative number.
   // Numerical component becomes itself as an integer.
-  numVersion = function (v) {
+  numVersion = function(v) {
     return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10));
   };
   v1 = prepVersion(v1);

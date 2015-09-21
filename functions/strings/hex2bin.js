@@ -8,15 +8,17 @@ function hex2bin(s) {
   //   example 3: hex2bin('2f1q')
   //   returns 3: false
 
-  var ret = [], i = 0, l;
+  var ret = [],
+    i = 0,
+    l;
 
   s += '';
 
-  for ( l = s.length ; i < l; i+=2 ) {
+  for (l = s.length; i < l; i += 2) {
     var c = parseInt(s.substr(i, 1), 16);
-    var k = parseInt(s.substr(i+1, 1), 16);
-    if(isNaN(c) || isNaN(k)) return false;
-    ret.push( (c << 4) | k );
+    var k = parseInt(s.substr(i + 1, 1), 16);
+    if (isNaN(c) || isNaN(k)) return false;
+    ret.push((c << 4) | k);
   }
 
   return String.fromCharCode.apply(String, ret);

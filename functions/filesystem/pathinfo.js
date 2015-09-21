@@ -52,15 +52,15 @@ function pathinfo(path, options) {
   // Initialize binary arguments. Both the string & integer (constant) input is
   // allowed
   var OPTS = {
-    'PATHINFO_DIRNAME': 1,
-    'PATHINFO_BASENAME': 2,
-    'PATHINFO_EXTENSION': 4,
-    'PATHINFO_FILENAME': 8,
-    'PATHINFO_ALL': 0
+    'PATHINFO_DIRNAME'   : 1,
+    'PATHINFO_BASENAME'  : 2,
+    'PATHINFO_EXTENSION' : 4,
+    'PATHINFO_FILENAME'  : 8,
+    'PATHINFO_ALL'       : 0
   };
   // PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)
   for (optName in OPTS) {
-    if(OPTS.hasOwnProperty(optName)){
+    if (OPTS.hasOwnProperty(optName)) {
       OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName];
     }
   }
@@ -77,7 +77,7 @@ function pathinfo(path, options) {
   }
 
   // Internal Functions
-  var __getExt = function (path) {
+  var __getExt = function(path) {
     var str = path + '';
     var dotP = str.lastIndexOf('.') + 1;
     return !dotP ? false : dotP !== str.length ? str.substr(dotP) : '';
@@ -127,7 +127,7 @@ function pathinfo(path, options) {
   // If array contains only 1 element: return string
   cnt = 0;
   for (opt in tmp_arr) {
-    if(tmp_arr.hasOwnProperty(opt)){
+    if (tmp_arr.hasOwnProperty(opt)) {
       cnt++;
       real_opt = opt;
     }
