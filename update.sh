@@ -15,6 +15,7 @@ git fetch upstream
 git merge v1.3.2
 git push
 cd tools
+mkdir -p temp
 ./phpjscompile.php > ../build/php.js
 cd ..
 git add .
