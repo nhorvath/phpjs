@@ -6,8 +6,13 @@ if [ $# -ne 1 ] ; then
   exit 1
 fi
 
-git fetch main
-git merge main/master
+git remote | grep upstream
+if [ $? -ne 0 ] ; then
+  git remote add upstream https://github.com/kvz/locutus.git
+fi
+
+git fetch upstream
+git merge v1.3.2
 git push
 cd tools
 ./phpjscompile.php > ../build/php.js
