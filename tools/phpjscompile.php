@@ -17,6 +17,7 @@ $PHPJS_Compiler_Shell = new PHPJS_Library_Compiler_Shell($dirFunctions, $dirComp
 
 $PHPJS_Compiler_Shell->setSelection(array(
 	"function::array_diff",
+	"function::array_intersect",
 	"function::array_keys",
 	"function::array_merge",
 	"function::array_search",
