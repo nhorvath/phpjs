@@ -1,4 +1,3 @@
-npm-debug.log
 tools/_temp/*
 tools/temp/*
 _octopress/_deploy
@@ -9,3 +8,15 @@ nbproject
 node_modules/
 .DS_Store
 .idea
+npm-debug.*
+env.sh
+website/vendor/bundle/
+website/_site/
+website/node_modules/
+website/vendor/bundle/
+website/.jekyll-assets-cache
+website/.asset-cache
+website/assets/bower/
+website/assets/build/
+website/vendor/cache/
+website/.jekyll-metadata
