@@ -22,32 +22,33 @@
     [15] => date
     [16] => date_parse
     [17] => number_format
-    [18] => parse_url
-    [19] => preg_grep
-    [20] => preg_quote
-    [21] => sprintf
-    [22] => strtotime
-    [23] => trim
-    [24] => uniqid
-    [25] => urldecode
-    [26] => urlencode
-    [27] => utf8_decode
-    [28] => utf8_encode
-    [29] => min
-    [30] => max
-    [31] => log10
-    [32] => htmlspecialchars
-    [33] => htmlspecialchars_decode
+    [18] => parse_str
+    [19] => parse_url
+    [20] => preg_grep
+    [21] => preg_quote
+    [22] => sprintf
+    [23] => strtotime
+    [24] => trim
+    [25] => uniqid
+    [26] => urldecode
+    [27] => urlencode
+    [28] => utf8_decode
+    [29] => utf8_encode
+    [30] => min
+    [31] => max
+    [32] => log10
+    [33] => htmlspecialchars
+    [34] => htmlspecialchars_decode
 )
  */
 /* 
  * More info at: http://phpjs.org
  * 
- * This is version: 2016-05-12
- * php.js is copyright 2016 Kevin van Zonneveld.
+ * This is version: 2018-03-06
+ * php.js is copyright 2018 Kevin van Zonneveld.
  * 
- * Portions copyright lmeyrick (https://sourceforge.net/projects/bcmath-js/),
- * Brett Zamir (http://brett-zamir.me)
+ * Portions copyright Brett Zamir (http://brett-zamir.me), lmeyrick
+ * (https://sourceforge.net/projects/bcmath-js/)
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -257,7 +258,32 @@ s=(prec?toFixedFix(n,prec):''+Math.round(n)).split('.')
 if(s[0].length>3){s[0]=s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g,sep)}
 if((s[1]||'').length<prec){s[1]=s[1]||''
 s[1]+=new Array(prec-s[1].length+1).join('0')}
-return s.join(dec)},parse_url:function(str,component){try{this.php_js=this.php_js||{}}catch(e){this.php_js={}}
+return s.join(dec)},parse_str:function(str,array){var strArr=String(str).replace(/^&/,'').replace(/&$/,'').split('&'),sal=strArr.length,i,j,ct,p,lastObj,obj,lastIter,undef,chr,tmp,key,value,postLeftBracketPos,keys,keysLen,fixStr=function(str){return decodeURIComponent(str.replace(/\+/g,'%20'))}
+if(!array){array=this.window}
+for(i=0;i<sal;i++){tmp=strArr[i].split('=')
+key=fixStr(tmp[0])
+value=(tmp.length<2)?'':fixStr(tmp[1])
+while(key.charAt(0)===' '){key=key.slice(1)}
+if(key.indexOf('\x00')>-1){key=key.slice(0,key.indexOf('\x00'))}
+if(key&&key.charAt(0)!=='['){keys=[]
+postLeftBracketPos=0
+for(j=0;j<key.length;j++){if(key.charAt(j)==='['&&!postLeftBracketPos){postLeftBracketPos=j+1}else if(key.charAt(j)===']'){if(postLeftBracketPos){if(!keys.length){keys.push(key.slice(0,postLeftBracketPos-1))}
+keys.push(key.substr(postLeftBracketPos,j-postLeftBracketPos))
+postLeftBracketPos=0
+if(key.charAt(j+1)!=='['){break}}}}
+if(!keys.length){keys=[key]}
+for(j=0;j<keys[0].length;j++){chr=keys[0].charAt(j)
+if(chr===' '||chr==='.'||chr==='['){keys[0]=keys[0].substr(0,j)+'_'+keys[0].substr(j+1)}
+if(chr==='['){break}}
+obj=array
+for(j=0,keysLen=keys.length;j<keysLen;j++){key=keys[j].replace(/^['"]/,'').replace(/['"]$/,'')
+lastIter=j!==keys.length-1
+lastObj=obj
+if((key!==''&&key!==' ')||j===0){if(obj[key]===undef){obj[key]={}}
+obj=obj[key]}else{ct=-1
+for(p in obj){if(obj.hasOwnProperty(p)){if(+p>ct&&p.match(/^\d+$/g)){ct=+p}}}
+key=ct+1}}
+lastObj[key]=value}}},parse_url:function(str,component){try{this.php_js=this.php_js||{}}catch(e){this.php_js={}}
 var query
 var ini=(this.php_js&&this.php_js.ini)||{}
 var mode=(ini['phpjs.parse_url.mode']&&ini['phpjs.parse_url.mode'].local_value)||'php'

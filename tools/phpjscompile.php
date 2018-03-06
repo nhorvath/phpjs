@@ -34,6 +34,7 @@ $PHPJS_Compiler_Shell->setSelection(array(
 	"function::date",
 	"function::date_parse",
 	"function::number_format",
+	"function::parse_str",
 	"function::parse_url",
 	"function::preg_grep",
 	"function::preg_quote",
